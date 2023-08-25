@@ -1,4 +1,4 @@
-from flask import Flask
+
 from views import app_views
 from models import storage
 from flask import make_response, jsonify
@@ -20,4 +20,4 @@ def not_found(error):
 
 
 if __name__ == "__main__":
-    app.run(debug=True, threaded=True)
+    app.run(debug=True, threaded=True, port=5001)
