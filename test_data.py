@@ -70,6 +70,7 @@ def create_reviews():
 
         review.save()
 
+
 def create_order_products():
     orders = Order.query.all()
     products = Product.query.all()

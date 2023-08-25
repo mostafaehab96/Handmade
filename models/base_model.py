@@ -36,6 +36,8 @@ class BaseModel:
             new_dict["updated_at"] = new_dict["updated_at"].isoformat()
         if "password" in new_dict:
             del new_dict["password"]
+        if "_sa_instance_state" in new_dict:
+            del new_dict["_sa_instance_state"]
 
         return new_dict
 

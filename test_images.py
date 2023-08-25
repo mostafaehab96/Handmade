@@ -18,9 +18,3 @@ if __name__ == "__main__":
                 file.write(f"{url}\n")
     else:
         print(response.status_code)
-
-
-
-
-
-
