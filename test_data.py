@@ -3,6 +3,7 @@ from models.user import User
 from models.product import Product
 from models.order import Order
 from models.review import Review
+from models.category import Category
 from models import storage
 import random
 from models import db, app
@@ -71,6 +72,7 @@ def create_reviews():
         review.save()
 
 
+
 def create_order_products():
     orders = Order.query.all()
     products = Product.query.all()
@@ -85,6 +87,40 @@ def create_order_products():
     db.session.commit()
 
 
+def create_categories():
+    categories = [
+        "Jewelry",
+        "Clothing",
+        "Home Decor",
+        "Beauty and Personal Care",
+        "Accessories",
+        "Stationery",
+        "Toys and Games",
+        "Kitchen and Dining",
+        "Pet Supplies",
+        "Holiday and Seasonal",
+        "Craft Supplies",
+        "Gifts for Special Occasions"
+    ]
+    for category in categories:
+        new = Category(name=category)
+        db.session.add(new)
+
+    db.session.commit()
+
+
+def create_product_categories():
+    products = Product.query.all()
+    categories = Category.query.all()
+
+    for product in products:
+        k = random.randint(1, 3)
+        selected_categories = random.sample(categories, k)
+        product.categories.extend(selected_categories)
+
+    db.session.commit()
+
+
 if __name__ == "__main__":
     with app.app_context():
         db.drop_all()
@@ -94,4 +130,6 @@ if __name__ == "__main__":
         create_orders()
         create_reviews()
         create_order_products()
+        create_categories()
+        create_product_categories()
         storage.close()
