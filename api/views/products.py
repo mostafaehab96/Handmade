@@ -8,9 +8,7 @@ from flask import make_response, jsonify, request
 
 @app_views.route('/products', strict_slashes=False)
 def get_products():
-    products = Product.query.all()
-    products = [product.to_dict() for product in products]
-    return jsonify(products)
+    return jsonify(Product.all_records())
 
 
 @app_views.route('/product/<id>', strict_slashes=False)
@@ -29,5 +27,16 @@ def get_product_categories(id):
         categories = product.categories
         categories = [category.to_dict() for category in categories]
         return jsonify(categories)
+    else:
+        return make_response({"Error": "Not Found"}, 404)
+
+
+@app_views.route('/product/<id>/reviews', strict_slashes=False)
+def get_product_reviews(id):
+    product = Product.query.filter_by(id=id).first()
+    if product:
+        reviews = product.reviews
+        reviews = [review.to_dict() for review in reviews]
+        return jsonify(reviews)
     else:
         return make_response({"Error": "Not Found"}, 404)

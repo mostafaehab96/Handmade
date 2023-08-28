@@ -8,12 +8,10 @@ from flask import make_response, jsonify, request
 
 @app_views.route('/orders')
 def get_orders():
-    orders = Order.query.all()
-    orders = [order.to_dict() for order in orders]
-    return jsonify(orders)
+    return jsonify(Order.all_records())
 
 
-@app_views.route('/order/<id>')
+@app_views.route('/order/<id>', strict_slashes=False)
 def get_order(id):
     order = Order.query.filter_by(id=id).first()
     if order:
@@ -21,7 +19,7 @@ def get_order(id):
     else:
         return make_response({"Error": "Not Found"}, 404)
 
-@app_views.route('/order/<id>/products')
+@app_views.route('/order/<id>/products', strict_slashes=False)
 def get_order_products(id):
     order = Order.query.filter_by(id=id).first()
     if order:
