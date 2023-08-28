@@ -1,7 +1,7 @@
-from models import db
-from models.base_model import BaseModel
+from models.base_model import BaseModel, Base
+from sqlalchemy import Column, String
 
 
-class Category(BaseModel, db.Model):
+class Category(BaseModel, Base):
     __tablename__ = "categories"
-    name = db.Column(db.String(60))
+    name = Column(String(60))

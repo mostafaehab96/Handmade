@@ -1,16 +1,19 @@
 """
 Defines the base model for all classes
 """
-from models import db
-from models import storage
+from sqlalchemy.orm import declarative_base
+from sqlalchemy import Column, String, DateTime
+import models
 from datetime import datetime
 import uuid
 
+Base = declarative_base()
+
 
 class BaseModel:
-    id = db.Column(db.String(60), primary_key=True)
-    created_at = db.Column(db.DateTime)
-    updated_at = db.Column(db.DateTime)
+    id = Column(String(60), primary_key=True)
+    created_at = Column(DateTime)
+    updated_at = Column(DateTime)
 
     def __init__(self, **kwargs):
         self.id = str(uuid.uuid4())
@@ -42,13 +45,12 @@ class BaseModel:
 
     def save(self):
         """Saving current instance"""
-        storage.new(self)
-        storage.save()
+        models.storage.new(self)
+        models.storage.save()
 
     def delete(self):
         """Delete current instance"""
-        storage.delete(self)
-
+        models.storage.delete(self)
 
     @classmethod
     def all_records(cls):

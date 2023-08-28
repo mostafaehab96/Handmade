@@ -1,19 +1,21 @@
 """
 Contains Order class
 """
-from models.base_model import BaseModel
-from models import db
+from models.base_model import BaseModel, Base
+from sqlalchemy import Column, String, ForeignKey, Table, Float
+from sqlalchemy.orm import relationship
 
-orders_products = db.Table(
+orders_products = Table(
     "orders_products",
-    db.Column("order_id", db.String(60), db.ForeignKey("orders.id"), primary_key=True),
-    db.Column("product_id", db.String(60), db.ForeignKey("products.id"), primary_key=True)
+    Base.metadata,
+    Column("order_id", String(60), ForeignKey("orders.id"), primary_key=True),
+    Column("product_id", String(60), ForeignKey("products.id"), primary_key=True)
     )
 
 
-class Order(BaseModel, db.Model):
+class Order(BaseModel, Base):
     __tablename__ = "orders"
-    address = db.Column(db.String(256))
-    total_price = db.Column(db.Float)
-    user_id = db.Column(db.String(60), db.ForeignKey("users.id"))
-    products = db.relationship("Product", secondary=orders_products)
+    address = Column(String(256))
+    total_price = Column(Float)
+    user_id = Column(String(60), ForeignKey("users.id"))
+    products = relationship("Product", secondary=orders_products)

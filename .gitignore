@@ -9,7 +9,11 @@ __pycache__/
 # C extensions
 *.so
 
- #Flask stuff:
+# Databases
+*.db
+*.sqlite3
+
+#Flask stuff:
 instance/
 .webassets-cache
 

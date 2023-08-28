@@ -1,24 +1,26 @@
 """
 Contains Product class
 """
-from models.base_model import BaseModel
-from models import db
-from models.category import Category
+from models.base_model import BaseModel, Base
+from sqlalchemy import Column, String, ForeignKey, Table, Float
+from sqlalchemy.orm import relationship
 
-product_categories = db.Table(
+
+product_categories = Table(
     "products_categories",
-    db.Column("product_id", db.String(60), db.ForeignKey("products.id"), primary_key=True),
-    db.Column("category_id", db.String(60), db.ForeignKey("categories.id"), primary_key=True)
+    Base.metadata,
+    Column("product_id", String(60), ForeignKey("products.id"), primary_key=True),
+    Column("category_id", String(60), ForeignKey("categories.id"), primary_key=True)
 )
 
 
-class Product(BaseModel, db.Model):
+class Product(BaseModel, Base):
     __tablename__ = "products"
-    name = db.Column(db.String(60))
-    description = db.Column(db.String(1024))
-    image = db.Column(db.String(512), nullable=False)
-    price = db.Column(db.Float)
-    user_id = db.Column(db.String(60), db.ForeignKey("users.id"), nullable=False)
-    reviews = db.relationship("Review")
-    categories = db.relationship("Category", secondary=product_categories,
+    name = Column(String(60))
+    description = Column(String(1024))
+    image = Column(String(512), nullable=False)
+    price = Column(Float)
+    user_id = Column(String(60), ForeignKey("users.id"), nullable=False)
+    reviews = relationship("Review")
+    categories = relationship("Category", secondary=product_categories,
                                  backref="products")

@@ -6,7 +6,6 @@ from models.review import Review
 from models.category import Category
 from models import storage
 import random
-from models import db, app
 
 fake = Faker()
 
@@ -19,6 +18,7 @@ def create_users():
         user = User(
             name=fake.name(),
             email=fake.email(),
+            password=fake.password(),
             address=fake.address(),
             postal_code="44511",
             about=fake.text(),
@@ -27,7 +27,7 @@ def create_users():
 
 
 def create_products():
-    users = User.query.all()
+    users = storage.all("User")
     count = 0
     for user in users:
         r = random.randint(1, 5)
@@ -43,7 +43,7 @@ def create_products():
 
 
 def create_orders():
-    users = User.query.all()
+    users = storage.all("User")
     for _ in range(100):
         user = random.choice(users)
         order = Order(
@@ -53,12 +53,10 @@ def create_orders():
         )
         storage.new(order)
 
-    db.session.commit()
-
 
 def create_reviews():
-    users = User.query.all()
-    products = Product.query.all()
+    users = storage.all("User")
+    products = storage.all("Product")
 
     for _ in range(50):
         user = random.choice(users)
@@ -70,12 +68,12 @@ def create_reviews():
         )
 
         review.save()
-
+    storage.save()
 
 
 def create_order_products():
-    orders = Order.query.all()
-    products = Product.query.all()
+    orders = storage.all("Order")
+    products = storage.all("Product")
     for order in orders:
         # select random k
         k = random.randint(1, 3)
@@ -83,8 +81,8 @@ def create_order_products():
         purchased_products = random.sample(products, k)
         order.total_price = sum([product.price for product in purchased_products])
         order.products.extend(purchased_products)
-
-    db.session.commit()
+        order.save()
+    storage.save()
 
 
 def create_categories():
@@ -104,32 +102,29 @@ def create_categories():
     ]
     for category in categories:
         new = Category(name=category)
-        db.session.add(new)
-
-    db.session.commit()
+        new.save()
 
 
 def create_product_categories():
-    products = Product.query.all()
-    categories = Category.query.all()
+    products = storage.all("Product")
+    categories = storage.all("Category")
 
     for product in products:
         k = random.randint(1, 3)
         selected_categories = random.sample(categories, k)
         product.categories.extend(selected_categories)
 
-    db.session.commit()
+    storage.save()
 
 
 if __name__ == "__main__":
-    with app.app_context():
-        db.drop_all()
-        db.create_all()
-        create_users()
-        create_products()
-        create_orders()
-        create_reviews()
-        create_order_products()
-        create_categories()
-        create_product_categories()
-        storage.close()
+    storage.drop()
+    storage.reload()
+    create_users()
+    create_products()
+    create_orders()
+    create_reviews()
+    create_order_products()
+    create_categories()
+    create_product_categories()
+    storage.close()
