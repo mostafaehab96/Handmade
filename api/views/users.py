@@ -1,20 +1,22 @@
 """Handles users RESTFUL API"""
 from api.views import app_views
-from models.user import User
 from flask import make_response, jsonify
+from models import storage
 
 
 @app_views.route('/users', strict_slashes=False)
 def get_users():
     """Returns all users, or Add new user"""
-    return jsonify(User.all_records())
+    users = storage.all("User")
+    users = [user.to_dict() for user in users]
+    return jsonify(users)
 
 
 @app_views.route('user/<id>', strict_slashes=False)
 def get_user(id):
     """Return one user by id"""
-    user = User.query.filter_by(id=id).first()
-    if user:
+    user = storage.get("User", id)
+    if user is not None:
         user = user.to_dict()
         return jsonify(user)
     else:
@@ -24,7 +26,7 @@ def get_user(id):
 @app_views.route('user/<id>/products', strict_slashes=False)
 def get_user_products(id):
     """Retrieve all products for a user"""
-    user = User.query.filter_by(id=id).first()
+    user = storage.get("User", id)
     if user:
         products = user.products
         products = [product.to_dict() for product in products]
@@ -36,7 +38,7 @@ def get_user_products(id):
 @app_views.route('user/<id>/orders', strict_slashes=False)
 def get_user_orders(id):
     """Retrieve all orders for a user"""
-    user = User.query.filter_by(id=id).first()
+    user = storage.get("User", id)
     if user:
         orders = user.orders
         orders = [order.to_dict() for order in orders]

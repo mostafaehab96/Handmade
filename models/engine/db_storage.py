@@ -66,3 +66,11 @@ class DBStorage:
             return self.__session.query(clas).all()
 
         return None
+
+    def get(self, cls, id):
+        """Returns an object based on class name and id"""
+        if cls not in self.__classes.keys():
+            return None
+
+        clas = self.__classes.get(cls)
+        return self.__session.query(clas).filter_by(id=id).first()

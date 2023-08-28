@@ -1,16 +1,18 @@
 from api.views import app_views
 from flask import make_response, jsonify
-from models.category import Category
+from models import storage
 
 
 @app_views.route('/categories', strict_slashes=False)
 def get_categories():
-    return jsonify(Category.all_records())
+    categories = storage.all("Category")
+    categories = [category.to_dict() for category in categories]
+    return jsonify(categories)
 
 
 @app_views.route('/category/<id>', strict_slashes=False)
 def get_category(id):
-    category = Category.query.filter_by(id=id).first()
+    category = storage.get("Category", id)
     if category:
         return jsonify(category.to_dict())
     else:
@@ -19,7 +21,7 @@ def get_category(id):
 
 @app_views.route('/category/<id>/products', strict_slashes=False)
 def get_products_category(id):
-    category = Category.query.filter_by(id=id).first()
+    category = storage.get("Category", id)
     if category:
         products = category.products
         products = [product.to_dict() for product in products]

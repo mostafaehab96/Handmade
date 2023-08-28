@@ -52,8 +52,3 @@ class BaseModel:
         """Delete current instance"""
         models.storage.delete(self)
 
-    @classmethod
-    def all_records(cls):
-        records = cls.query.all()
-        records = [record.to_dict() for record in records]
-        return records
