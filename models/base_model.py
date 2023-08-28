@@ -2,12 +2,11 @@
 Defines the base model for all classes
 """
 from models import db
+from models import storage
 from datetime import datetime
 import uuid
-from sqlalchemy.orm import declarative_base
-from models import storage
 
-Base = declarative_base()
+
 class BaseModel:
     id = db.Column(db.String(60), primary_key=True)
     created_at = db.Column(db.DateTime)
@@ -20,7 +19,7 @@ class BaseModel:
         if kwargs:
             for key, value in kwargs.items():
                 if key != "__class__":
-                    setattr(self,key, value)
+                    setattr(self, key, value)
 
     def __str__(self):
         """String representation of the BaseModel class"""
@@ -41,7 +40,6 @@ class BaseModel:
 
         return new_dict
 
-
     def save(self):
         """Saving current instance"""
         storage.new(self)
@@ -52,4 +50,8 @@ class BaseModel:
         storage.delete(self)
 
 
-
+    @classmethod
+    def all_records(cls):
+        records = cls.query.all()
+        records = [record.to_dict() for record in records]
+        return records

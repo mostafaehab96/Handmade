@@ -2,11 +2,12 @@
 Handles operations regarding the database storage
 """
 
+
 class DBStorage:
     __session = None
+
     def __init__(self, db):
         self.__session = db.session
-
 
     def new(self, obj):
         """Adds new instance to the session scope"""
@@ -25,10 +26,3 @@ class DBStorage:
     def close(self):
         """Removes the session from the registry of scoped sessions"""
         self.__session.remove()
-
-
-
-
-
-
-
