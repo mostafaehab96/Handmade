@@ -4,10 +4,10 @@
     <h2 class="p-heading" id="products">Products</h2>
 </div>
 
-<div class="products container-fluid">
-    <div class="row">
+<div class="products">
+    <div class="container">
         {% for product in products %}
-        <div class="p-card col-md-4">
+        <div class="p-card">
             <img src="{{ product.image }}" alt="product image">
             <div class="product-info">
                 <h3 class="Product-name">{{ product.name }}</h3>
