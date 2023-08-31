@@ -1,18 +1,12 @@
-from models import app
-from models.user import User
-from models.product import Product
-from models.order import Order
-from models.review import Review
-from flask import jsonify
+from flask import Flask, render_template
+from models import storage
+
+app = Flask(__name__)
 
 @app.route('/', strict_slashes=False)
 def hello():
-    return "Hello, World!"
-
-@app.route('/first_user', strict_slashes=False)
-def first_user():
-    first = User.query.first()
-    return jsonify(first.to_dict())
+    products = storage.all("Product")
+    return render_template("home.html", products=products)
 
 
 
