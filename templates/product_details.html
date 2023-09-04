@@ -1,0 +1,51 @@
+{% include 'header.html' %}
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/product_details.css') }}"/>
+{% endblock %}}
+<div class="p-details">
+    <div class="container">
+        <img src="{{ product.image }}" alt="">
+        <div class="p-det-info">
+            <h2 class="p-det-name">{{ product.name }}</h2>
+            <h3 class="p-det-h">Description</h3>
+            <p class="p-det-des">{{ product.description }}</p>
+            <span class="p-det-price">{{ product.price }} <span class="currency"> EGP</span> </span>
+            <h3 class="seller-name-h">{{ product.user.name }}</h3>
+            <a class="seller-name" href="">Seller Details</a>
+            <span class="rate">Rate <span class="star">
+                    <span class="stars fa fa-star checked"></span>
+                    <span class="stars fa fa-star checked"></span>
+                    <span class="stars fa fa-star checked"></span>
+                    <span class="stars fa fa-star checked"></span>
+                    <span class="stars fa fa-star"></span>
+                    </span>  </span>
+            <input class="p-det-add" type="button" value="Add To Cart">
+        </div>
+    </div>
+</div>
+<div class="container">
+    <h1 class="reviews-h"> Reviews </h1>
+</div>
+<div class="reviews-sec">
+    <div class="container">
+        {% for review in product.reviews %}
+        <div class="review">
+            <div class="users-review">
+                <i class="user-icon fa-solid fa-user-large"></i>
+                <span class="user-name">{{ review.user.name }}</span>
+                <span class="star">
+                        <span class="stars fa fa-star checked"></span>
+                        <span class="stars fa fa-star checked"></span>
+                        <span class="stars fa fa-star checked"></span>
+                        <span class="stars fa fa-star checked"></span>
+                        <span class="stars fa fa-star"></span>
+                        </span>
+                <p class="review-description">{{ review.text }}</p>
+            </div>
+        </div>
+        {% endfor %}
+        <input class="add-review-btn" type="button" value="Add Review">
+    </div>
+</div>
+{% include 'footer.html' %}
+

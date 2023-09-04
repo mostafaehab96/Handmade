@@ -5,7 +5,6 @@ from models.base_model import BaseModel, Base
 from sqlalchemy import Column, String, ForeignKey, Table, Float
 from sqlalchemy.orm import relationship
 
-
 product_categories = Table(
     "products_categories",
     Base.metadata,
@@ -23,4 +22,4 @@ class Product(BaseModel, Base):
     user_id = Column(String(60), ForeignKey("users.id"), nullable=False)
     reviews = relationship("Review")
     categories = relationship("Category", secondary=product_categories,
-                                 backref="products")
+                              backref="products")

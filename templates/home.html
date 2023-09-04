@@ -1,5 +1,13 @@
 {% include "header.html" %}
 
+<div class="cover-photo">
+    <div class="typing-container">
+        <div class="typing-text">
+            Welcome to Handmade E-commerce
+        </div>
+    </div>
+</div>
+
 <div class="landing">
     <h2 class="p-heading" id="products">Products</h2>
 </div>
@@ -8,7 +16,9 @@
     <div class="container">
         {% for product in products %}
         <div class="p-card">
-            <img src="{{ product.image }}" alt="product image">
+            <a href="{{ url_for('show_product', product_id=product.id) }}">
+                <img src="{{ product.image }}" alt="product image">
+            </a>
             <div class="product-info">
                 <h3 class="Product-name">{{ product.name }}</h3>
                 <p class="Product-description">{{ product.description}}</p>
@@ -18,6 +28,7 @@
                 </div>
             </div>
         </div>
+
         {% endfor %}
     </div>
 </div>
