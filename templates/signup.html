@@ -1,9 +1,0 @@
-{% include 'header.html' %}
-
-<div class="container sign_form">
-    {% from 'bootstrap5/form.html' import render_form %}
-
-    {{ render_form(form) }}
-    {{ ckeditor.load() }}
-</div>
-{% include 'footer.html' %}
