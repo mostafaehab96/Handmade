@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, url_for, flash
+from flask import Flask, render_template, redirect, url_for, request
 from models import storage
 from flask_bootstrap import Bootstrap5
 from flask_wtf import FlaskForm
@@ -8,6 +8,7 @@ from wtforms.validators import DataRequired, URL, Email, EqualTo
 from werkzeug.security import check_password_hash
 from flask_login import LoginManager, login_user, login_manager, logout_user
 from models.user import User
+from models.product import Product
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
@@ -16,6 +17,11 @@ ckeditor = CKEditor(app)
 login_manager = LoginManager()
 login_manager.init_app(app)
 
+
+@app.teardown_appcontext
+def close_db(error):
+    """ Remove the current SQLAlchemy Session """
+    storage.close()
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -84,6 +90,16 @@ def signup():
 def login():
     login_form = LoginFrom()
     return render_template('login.html', form=login_form)
+
+
+@app.route('/cart')
+def cart():
+    product_ids = request.args.get('productIds').split(',')
+    products = storage.all("Product")
+    selected_products = [product for product in products if product.id in product_ids]
+    total_price = sum([product.price for product in selected_products])
+    return render_template("cart-details.html", products=selected_products, price=total_price)
+
 
 
 if __name__ == "__main__":

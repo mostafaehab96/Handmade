@@ -1,0 +1,43 @@
+{% include "header.html" %}
+{% if products|length %}
+    <div class="container">
+        <h1 class="ur-cart-h">Your Cart</h1>
+    </div>
+    <div class="carts-side">
+        <div class="container">
+            <div class="side-sec">
+                {% for product in products %}
+                    <div class="side">
+                        <img class="p-cart-img" src="{{ product.image }}" alt="">
+                        <div class="p-cart-info">
+                            <h3 class="p-cart-name">{{ product.name }}e</h3>
+                            <span class="p-cart-price"> {{ product.price }} <span
+                                    class="p-cart-currency">EGP</span></span>
+                            <h4 class="p-cart-seller-h"> Seller: <a href=""
+                                                                    class="p-cart-s-name">{{ product.user.name }}</a>
+                            </h4>
+                            <a href="" class="p-remove"> Remove </a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="p-cart-check">
+                <h2 class="total-price"> Total Price </h2>
+                <hr>
+                <span class="p-t-price"> {{ price }}<span class="p-t-currency">EGP</span></span>
+                <h2 class="pay-method"> Payment Method </h2>
+                <hr>
+                <label class="cash">
+                    <input class="cash-on-check" type="checkbox" name="" id="" checked="checked" disabled>
+                    Cash on delivery
+                </label>
+                <input class="check-btn" type="button" value="Checkout">
+            </div>
+        </div>
+    </div>
+{% else %}
+    <div class="container">
+        <h1 class="ur-cart-h">Your Cart Is Empty</h1>
+    </div>
+{% endif %}
+{% include "footer.html" %}

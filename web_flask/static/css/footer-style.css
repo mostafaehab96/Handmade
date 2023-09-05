@@ -1,26 +1,26 @@
 :root {
     --m-color: #485460;
-    --alt-color : #669bcc;
-    --header-height : 77px; 
-    --main-transition:0.3s;
+    --alt-color: #669bcc;
+    --header-height: 77px;
+    --main-transition: 0.3s;
     --bg-color: #f7f9f7;
-    --onhover:#e8ecf1;
+    --onhover: #e8ecf1;
 }
 
-*{
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-body{
-  font-family: 'Open Sans', sans-serif;
+body {
+    font-family: 'Open Sans', sans-serif;
 }
 
 html {
-  scroll-behavior: smooth;
+    scroll-behavior: smooth;
 }
 
 /* //////////////////////////////////////// */
@@ -40,19 +40,18 @@ html {
 .footer {
     background-color: #04221e;
     padding: 50px 0 30px 0;
-  }
+}
 
-  
-  .footer .container {
+
+.footer .container {
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
     overflow: hidden;
+}
 
-  }
-
-  .copyright {
+.copyright {
     display: block;
     padding: 25px 0;
     text-align: center;
@@ -63,20 +62,20 @@ html {
     margin-bottom: -25px;
     overflow: hidden;
 
-  }
-  
+}
 
-  .footer-logo{
+
+.footer-logo {
     color: white;
     margin-bottom: 35px;
     font-size: 23px;
     font-weight: 800;
     letter-spacing: 1.1px;
     cursor: pointer;
-  }
-  
+}
 
-  .social-links .s-icon {
+
+.social-links .s-icon {
     display: inline-flex;
     justify-content: center;
     align-items: center;
@@ -88,23 +87,23 @@ html {
     transition: var(--main-transition);
     margin-bottom: 15px;
     color: #b9b9b9;
-  }
-
-
-.social-links .linkedin:hover{
-    background-color: #0072b1 ;
 }
 
-.social-links .facebook:hover{
+
+.social-links .linkedin:hover {
+    background-color: #0072b1;
+}
+
+.social-links .facebook:hover {
     background-color: #3b5998;
 }
 
-.social-links .twitter:hover{
+.social-links .twitter:hover {
     background-color: #00acee;
 }
 
 
-.social-links .youtube:hover{
+.social-links .youtube:hover {
     background-color: #c4302b;
 }
 
