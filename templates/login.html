@@ -1,0 +1,11 @@
+{% include 'header.html' %}
+
+<div class="container sign_form">
+    {% from 'bootstrap5/form.html' import render_form %}
+    {{ render_form(form) }}
+</div>
+<div class="container">
+    <a href="{{ url_for('signup') }}">Signup if you dont have an account</a>
+</div>
+
+{% include 'footer.html' %}
