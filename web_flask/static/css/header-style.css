@@ -1,0 +1,361 @@
+:root {
+    --m-color: #485460;
+    --alt-color : #669bcc;
+    --header-height : 77px; 
+    --main-transition:0.3s;
+    --bg-color: #f7f9f7;
+    --onhover:#e8ecf1;
+}
+
+*{
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    font-family: 'Open Sans', sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* //////////////////////////////////////////// */
+
+.header {
+    background-color: var(--bg-color);
+    position: relative;
+    -webkit-box-shadow: 0 0 10px #ddd;
+    -moz-box-shadow: 0 0 10px #ddd;
+    box-shadow: b0 0 10px #ddd;
+}
+
+.container {
+
+    padding-left: 25px;
+    padding-right: 25px;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+/* Extra small  */
+@media (max-width: 576px) {
+    .container {
+        width: 100%;
+    }
+}
+
+/* Small  */
+@media (min-width: 576px) {
+    .container {
+        width: 540px;
+    }
+}
+
+/* Medium screen */
+@media (min-width: 768px) {
+    .container {
+        width: 750px;
+    }
+}
+
+/* Large screen */
+@media (min-width: 992px) {
+    .container {
+        width: 970px;
+    }
+}
+
+/* X-large screen */
+@media (min-width: 1200px) {
+    .container {
+        width: 1170px;
+    }
+}
+
+/* XX-large */
+@media (min-width: 1400px) {
+    .container {
+        width: 1380px;
+    }
+}
+
+.header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    position: relative;
+}
+
+.header .logo {
+    color: var(--m-color);
+    font-size: 22px;
+    font-weight: bold;
+    height:  var(--header-height);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: auto;
+    margin-left: 15px;
+}
+
+.header .shop {
+    color: var(--alt-color);
+    margin-right: 10px;
+}
+
+a {
+    text-decoration: none;
+    list-style: none;
+}
+
+.header .links {
+    position: relative;
+    margin-right: 25px;
+    
+}
+
+.header .links .bars-icon {
+    width: 35px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    cursor: pointer;
+}
+
+.header .links .bars-icon span {
+    background-color: var(--m-color);
+    margin-bottom: 6px;
+    height: 2px;
+    transition-duration: var(--main-transition);
+}
+
+.header .links:hover .bars-icon span {
+    margin-bottom: 8px;
+}
+
+.header .links .bars-icon span:first-child {
+    width: 100%;
+}
+
+.header .links .bars-icon .nd {
+    width: 60%;
+}
+
+.header .links .bars-icon span:last-child {
+    width: 100%;
+}
+
+.header .links ul {
+    position: absolute;
+    right: 0;
+    background-color: var(--bg-color);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    top: calc(100% + 43px);
+    min-width: 200px;
+    display: none;
+    z-index: 1;
+}
+
+.header .links ul li a {
+    display: block;
+    padding: 16px;
+    font-weight: 600;
+    color: var(--m-color);
+    transition-duration: var(--main-transition);
+}
+
+.header .links ul li a:hover{
+    padding-left: 30px;
+    background-color: var(--onhover);
+}
+
+.header .links ul li:not(:last-child) a {
+    border-bottom: 1px solid #e6e0e0;
+}
+
+.header .links ul::before {
+    content: "";
+    border-width: 10px;
+    border-style: solid;
+    border-color: transparent transparent var(--bg-color) transparent;
+    position: absolute;
+    top: -20px;
+    right: 5px;
+}
+
+.header .login {
+    height: 35px;
+    font-size: larger;
+    font-weight: bold;
+    padding: 5px 25px;
+    border-radius: 50px;
+    cursor: pointer;
+    background-color: transparent;
+    border: 1px solid var(--m-color);
+    color: var(--m-color);
+    transition-duration: var(--main-transition);
+}
+
+.login:hover {
+    background-color: var(--onhover);
+}
+
+.header .cart {
+    margin: 20px;
+    font-size: 30px;
+    cursor: pointer;
+    color: var(--m-color);
+    border-radius: 10px;
+    padding: 9px;
+    transition-duration: var(--main-transition);
+}
+
+.header .cart:hover {
+    background-color: var(--onhover);
+    transform: translatey(-5px); 
+}
+
+.badge:after{
+    content:attr(value);
+    font-size:17px;
+    color: var(--m-color);
+    background: var(--onhover);
+    border-radius:10px;
+    padding: 2.5px 5px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: var(--m-color);
+    position:sticky;
+    vertical-align: super;
+    
+}
+
+/* media query for header  */
+@media (max-width:992px) {
+    .header .logo{
+        width: 5px;
+        font-size: 20px;
+        margin-left: 70px;
+    }
+
+    .header .links {
+        margin-right: -5px !important;
+    }
+
+    .header .cart{
+        margin-right: -15px;
+    }
+
+    .header .login{
+        font-size: 17px;
+        font-weight: 700;
+        padding: 5px 18px;
+        margin-left: 30px;
+    }
+}
+
+@media (max-width:767px) {
+    .header{
+        height: 125px;
+    }
+
+    .header .logo{
+        font-size: 16px;
+        position: absolute;
+        left: 20px;
+        top: 5px;
+    }
+
+    .header .links {
+        left: 63%;
+        top: 83px;
+    }
+
+    .header .login {
+        position: absolute;
+        right: 15px;
+        top: 75px;
+    }
+
+    .header .cart {
+        position: absolute;
+        right: 35px;
+        top: 0px;
+    }
+
+    .badge:after{
+        border-radius:10px;
+        font-size: 13px;
+        padding: 2.5px 5px;
+    }
+}
+
+@media (max-width:340px) {
+    .header{
+        height: 115px;
+    }
+
+    .header .logo{
+        font-size: 13px;
+        position: absolute;
+        left: 0px;
+        top: -5px;
+    }
+    
+    .header .login {
+        position: absolute;
+        right: 15px;
+        top: 69px;
+        font-size: 13px;
+        padding: 0px 13px;
+    }
+
+    .header .cart {
+        position: absolute;
+        right: 32px;
+        top: 0px;
+        font-size: 23px;
+    }
+
+    .badge:after{
+        border-radius:10px;
+        font-size: 9px;
+        padding: 2.5px 5px;
+    }
+
+    .header .links {
+        left: 55%;
+        top: 75px;
+    }    
+
+    .header .links ul {
+        min-width: 120px;
+    }
+}
+
+@media (width:540px){
+    .header .links {
+        left: 75% !important;
+    }    
+}
+
+@media (min-width: 440px) and (max-width: 766px) {
+    .header .links {
+        left: 68%;
+    }    
+}
+
+
+
+
+
+
+
