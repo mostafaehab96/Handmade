@@ -16,7 +16,7 @@
                             <h4 class="p-cart-seller-h"> Seller: <a href=""
                                                                     class="p-cart-s-name">{{ product.user.name }}</a>
                             </h4>
-                            <a href="" class="p-remove"> Remove </a>
+                            <a href="#" class="p-remove" product_price="{{ product.price }}"> Remove </a>
                         </div>
                     </div>
                 {% endfor %}
@@ -40,4 +40,7 @@
         <h1 class="ur-cart-h">Your Cart Is Empty</h1>
     </div>
 {% endif %}
-{% include "footer.html" %}
+{% extends "footer.html" %}
+{% block scripts %}
+<script src="../static/scripts/cart_details.js"></script>
+{% endblock %}

@@ -1,10 +1,11 @@
-const cart = document.querySelector(".cart");
+'use strict'
+const cart_home = document.querySelector(".cart");
 const cartValue = document.querySelector(".badge");
 
-const cartContent = document.querySelectorAll('.side')
+
+
 const productIds = [];
-let value = cartContent.length;
-cartValue.setAttribute('value', value)
+let value = 0;
 
 document.addEventListener("click", function (event) {
     if (event.target.classList.contains("p-card-add")) {
@@ -18,7 +19,7 @@ document.addEventListener("click", function (event) {
 })
 
 
-cart.addEventListener("click", function () {
+cart_home.addEventListener("click", function () {
     window.location.href = `/cart?productIds=${productIds.join(',')}`
 
 });

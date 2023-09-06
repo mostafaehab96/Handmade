@@ -92,7 +92,7 @@ def login():
     return render_template('login.html', form=login_form)
 
 
-@app.route('/cart')
+@app.route('/cart', methods=["GET", "POST"])
 def cart():
     product_ids = request.args.get('productIds').split(',')
     products = storage.all("Product")
