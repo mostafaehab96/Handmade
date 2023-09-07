@@ -141,3 +141,7 @@ textarea {
   padding-left: 20px;
   font-size: x-small;
 }
+.flash {
+  color: #ee6f57;
+  text-align: center;
+}

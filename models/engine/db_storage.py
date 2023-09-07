@@ -74,3 +74,15 @@ class DBStorage:
 
         clas = self.__classes.get(cls)
         return self.__session.query(clas).filter_by(id=id).first()
+
+    def filter(self, cls, col, value):
+        """Returns an abject based on the class name, column and value to filter"""
+        if cls not in self.__classes.keys():
+            return None
+
+        clas = self.__classes.get(cls)
+        attr = getattr(clas, col, None)
+        if attr:
+            return self.__session.query(clas).filter(attr == value).first()
+        else:
+            return None

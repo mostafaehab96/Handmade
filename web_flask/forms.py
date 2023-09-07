@@ -19,5 +19,5 @@ class SignupForm(FlaskForm):
 
 class LoginFrom(FlaskForm):
     email = EmailField('Email', validators=[DataRequired(), Email()], render_kw={"class": "in-field"})
-    password = PasswordField('Password', validators=[DataRequired(), Email()], render_kw={"class": "in-field"})
+    password = PasswordField('Password', validators=[DataRequired()], render_kw={"class": "in-field"})
     login = SubmitField('Login', render_kw={"class": "save"})

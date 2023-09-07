@@ -4,6 +4,16 @@
 {% endblock %}
 
 {% from "_formhelpers.html" import render_field %}
+<div class="container sign_form">
+    <h1>Login</h1>
+</div>
+{% with messages=get_flashed_messages() %}
+    {% if messages %}
+        {% for message in messages %}
+            <p class="flash">{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
 <div class="user-sec">
     <div class="container sign_form">
         <div class="profile-sec">
@@ -19,7 +29,7 @@
 
 
 <div class="container sign_form">
-    <a href="{{ url_for('signup') }}">Signup if you dont have an account</a>
+    <a href="{{ url_for('signup') }}">Signup if you don't have an account</a>
 </div>
 <div style="min-height: 50vh"></div>
 {% include 'footer.html' %}

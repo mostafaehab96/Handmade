@@ -1,11 +1,13 @@
-from flask import Flask, render_template, redirect, url_for, request
+from flask import Flask, render_template, redirect, url_for, request, flash
 from models import storage
 from werkzeug.security import check_password_hash
-from flask_login import LoginManager, login_user, login_manager, logout_user, current_user
+from flask_login import LoginManager, login_user, login_manager, logout_user, current_user, login_required
 from models.user import User
 from models.product import Product
 from forms import SignupForm, LoginFrom
 from flask_bootstrap import Bootstrap5
+from sqlalchemy import select
+from models.user import User
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
@@ -13,22 +15,23 @@ login_manager = LoginManager()
 login_manager.init_app(app)
 bootstrap = Bootstrap5(app)
 
+
 @app.teardown_appcontext
 def close_db(error):
     """ Remove the current SQLAlchemy Session """
     storage.close()
+
 
 @login_manager.user_loader
 def load_user(user_id):
     return storage.get("User", user_id)
 
 
-
 @app.route('/', strict_slashes=False)
 def home():
     products = storage.all("Product")
     logged_in = current_user.is_active
-    return render_template("home.html", products=products, logged=logged_in)
+    return render_template("home.html", products=products, logged_in=logged_in)
 
 
 @app.route('/products/<product_id>')
@@ -43,31 +46,55 @@ def signup():
     sign_form = SignupForm()
 
     if sign_form.validate_on_submit():
-        print("Validated")
-        # name = sign_form.name.data
-        # email = sign_form.email.data
-        # password = sign_form.password.data
-        # address = sign_form.address.data
-        # postal_code = sign_form.postal_code.data
-        # about = sign_form.about.data
-        # user = User(name=name,
-        #             email=email,
-        #             password=password,
-        #             address=address,
-        #             postal_code=postal_code,
-        #             about=about
-        #             )
-        # user.save()
-        # login_user(user)
+        name = sign_form.name.data
+        email = sign_form.email.data
+        password = sign_form.password.data
+        address = sign_form.address.data
+        postal_code = sign_form.postal_code.data
+        about = sign_form.about.data
+
+        if storage.filter("User", "email", email):
+            flash("You already have an account login instead")
+            return redirect(url_for('signup'))
+        user = User(name=name,
+                    email=email,
+                    password=password,
+                    address=address,
+                    postal_code=postal_code,
+                    about=about
+                    )
+        user.save()
+        login_user(user)
         return redirect(url_for('home'))
 
     return render_template('signup.html', form=sign_form)
 
 
-@app.route('/login')
+@app.route('/login', methods=["GET", "POST"])
 def login():
     login_form = LoginFrom()
+    if login_form.validate_on_submit():
+        email = login_form.email.data
+        password = login_form.password.data
+        user = storage.filter("User", "email", email)
+        if user:
+            if check_password_hash(user.password, password):
+                login_user(user)
+                return redirect(url_for('home'))
+            else:
+                flash("Wrong password please try again")
+                return redirect(url_for('login'))
+        else:
+            flash("This email doesn't exist signup if you don't have an account")
+            redirect(url_for('login'))
     return render_template('login.html', form=login_form)
+
+
+@app.route("/logout")
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for('home'))
 
 
 @app.route('/cart', methods=["GET", "POST"])
@@ -77,7 +104,6 @@ def cart():
     selected_products = [product for product in products if product.id in product_ids]
     total_price = sum([product.price for product in selected_products])
     return render_template("cart-details.html", products=selected_products, price=total_price)
-
 
 
 if __name__ == "__main__":
