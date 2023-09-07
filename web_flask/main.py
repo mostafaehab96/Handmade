@@ -1,4 +1,5 @@
-from flask import Flask, render_template, redirect, url_for, request, flash
+import flask
+from flask import Flask, render_template, redirect, url_for, request, flash, session, jsonify, make_response
 from models import storage
 from werkzeug.security import check_password_hash
 from flask_login import LoginManager, login_user, login_manager, logout_user, current_user, login_required
@@ -8,6 +9,7 @@ from forms import SignupForm, LoginFrom
 from flask_bootstrap import Bootstrap5
 from sqlalchemy import select
 from models.user import User
+from models.cart import Cart
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
@@ -31,14 +33,14 @@ def load_user(user_id):
 def home():
     products = storage.all("Product")
     logged_in = current_user.is_active
+    session['current_cart'] = []
     return render_template("home.html", products=products, logged_in=logged_in)
 
 
 @app.route('/products/<product_id>')
 def show_product(product_id):
     product = storage.get("Product", product_id)
-    print(product)
-    return render_template('product_details.html', product=product)
+    return render_template('product_details.html', product=product, logged_in=current_user.is_active)
 
 
 @app.route('/signup', methods=["GET", "POST"])
@@ -61,7 +63,8 @@ def signup():
                     password=password,
                     address=address,
                     postal_code=postal_code,
-                    about=about
+                    about=about,
+                    cart=Cart()
                     )
         user.save()
         login_user(user)
@@ -86,7 +89,7 @@ def login():
                 return redirect(url_for('login'))
         else:
             flash("This email doesn't exist signup if you don't have an account")
-            redirect(url_for('login'))
+            return redirect(url_for('login'))
     return render_template('login.html', form=login_form)
 
 
@@ -97,13 +100,54 @@ def logout():
     return redirect(url_for('home'))
 
 
+@app.route('/add_cart/<product_id>')
+def add_cart(product_id):
+    if current_user.is_active:
+        print("User is active!")
+        product = storage.get("Product", product_id)
+        user = storage.get("User", current_user.get_id())
+        if not product in user.cart.products:
+            user.cart.products.append(product)
+            storage.save()
+        return jsonify({"status": "OK"}), 200
+    else:
+        flash("You have to login first")
+        return jsonify({"status": "Login"})
+
+@app.route("/cart/count")
+def cart_count():
+    if current_user.is_active:
+        user = storage.get("User", current_user.get_id())
+        product_ids = [product.id for product in user.cart.products]
+        count = len(product_ids)
+        return jsonify({"count": f"{count}", "product_ids": product_ids}), 200
+    return jsonify({"count": 0})
+
+
 @app.route('/cart', methods=["GET", "POST"])
 def cart():
-    product_ids = request.args.get('productIds').split(',')
-    products = storage.all("Product")
-    selected_products = [product for product in products if product.id in product_ids]
-    total_price = sum([product.price for product in selected_products])
-    return render_template("cart-details.html", products=selected_products, price=total_price)
+    selected_products = []
+    total_price = 0
+    if current_user.is_active:
+        user = storage.get("User", current_user.get_id())
+        selected_products = user.cart.products
+        total_price = sum([product.price for product in selected_products])
+    return render_template("cart-details.html",
+                           products=selected_products,
+                           price=total_price,
+                           logged_in=current_user.is_active)
+
+
+
+@app.route('/cart/remove/<product_id>')
+@login_required
+def cart_remove(product_id):
+    user = storage.get("User", current_user.get_id())
+    product = storage.get("Product", product_id)
+    user.cart.products.remove(product)
+    storage.save()
+
+    return jsonify({"status": "ok"}), 200
 
 
 if __name__ == "__main__":

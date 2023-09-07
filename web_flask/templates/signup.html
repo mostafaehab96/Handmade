@@ -5,7 +5,7 @@
 
 
 {% from "_formhelpers.html" import render_field %}
-<div class="container sign_form">
+<div class="container add_margin">
     <h1>SignUp</h1>
 </div>
 {% with messages=get_flashed_messages() %}
@@ -16,7 +16,7 @@
     {% endif %}
 {% endwith %}
 <div class="user-sec">
-    <div class="container sign_form">
+    <div class="container add_margin">
         <div class="profile-sec">
             <form class="profile-form" method="post" novalidate>
                 {{ form.csrf_token }}
@@ -33,6 +33,6 @@
         </div>
     </div>
 </div>
-<div class="sign_form">
+<div class="add_margin">
 </div>
 {% include 'footer.html' %}

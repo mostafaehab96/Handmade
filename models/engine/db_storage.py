@@ -9,13 +9,14 @@ from models.product import Product
 from models.order import Order
 from models.review import Review
 from models.category import Category
+from models.cart import Cart
 
 
 class DBStorage:
     __engine = None
     __session = None
     __classes = {"User": User, "Product": Product, "Order": Order,
-                 "Review": Review, "Category": Category
+                 "Review": Review, "Category": Category, "Cart": Cart
                  }
 
     def __init__(self):

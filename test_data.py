@@ -4,6 +4,7 @@ from models.product import Product
 from models.order import Order
 from models.review import Review
 from models.category import Category
+from models.cart import Cart
 from models import storage
 import random
 
@@ -14,7 +15,7 @@ with open("test_images.txt", "r") as file:
 
 
 def create_users():
-    for _ in range(30):
+    for _ in range(10):
         user = User(
             name=fake.name(),
             email=fake.email(),
@@ -22,6 +23,7 @@ def create_users():
             address=fake.address(),
             postal_code="44511",
             about=fake.text(),
+            cart=Cart()
         )
         user.save()
 
@@ -58,13 +60,14 @@ def create_reviews():
     users = storage.all("User")
     products = storage.all("Product")
 
-    for _ in range(50):
+    for _ in range(100):
         user = random.choice(users)
         product = random.choice(products)
         review = Review(
             text=fake.text(),
             user_id=user.id,
-            product_id=product.id
+            product_id=product.id,
+            rating=random.randint(1, 6)
         )
 
         review.save()
