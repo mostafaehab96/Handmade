@@ -43,21 +43,22 @@ def signup():
     sign_form = SignupForm()
 
     if sign_form.validate_on_submit():
-        name = sign_form.name.data
-        email = sign_form.email.data
-        password = sign_form.password.data
-        address = sign_form.address.data
-        postal_code = sign_form.postal_code.data
-        about = sign_form.about.data
-        user = User(name=name,
-                    email=email,
-                    password=password,
-                    address=address,
-                    postal_code=postal_code,
-                    about=about
-                    )
-        user.save()
-        login_user(user)
+        print("Validated")
+        # name = sign_form.name.data
+        # email = sign_form.email.data
+        # password = sign_form.password.data
+        # address = sign_form.address.data
+        # postal_code = sign_form.postal_code.data
+        # about = sign_form.about.data
+        # user = User(name=name,
+        #             email=email,
+        #             password=password,
+        #             address=address,
+        #             postal_code=postal_code,
+        #             about=about
+        #             )
+        # user.save()
+        # login_user(user)
         return redirect(url_for('home'))
 
     return render_template('signup.html', form=sign_form)

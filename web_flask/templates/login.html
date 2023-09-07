@@ -3,13 +3,14 @@
     <link rel="stylesheet" href="../static/css/forms-style.css">
 {% endblock %}
 
+{% from "_formhelpers.html" import render_field %}
 <div class="user-sec">
     <div class="container sign_form">
         <div class="profile-sec">
-            <form class="profile-form" action="">
+            <form class="profile-form" method="post" novalidate>
                 {{ form.csrf_token }}
-                {{ form.email.label }} {{ form.email }}
-                {{ form.password.label }} {{ form.password }}
+                {{ render_field(form.email) }}
+                {{ render_field(form.password) }}
                 {{ form.login }}
             </form>
         </div>

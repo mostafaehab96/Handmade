@@ -134,3 +134,10 @@ textarea {
   font-weight: 510;
   color: #2e363e;
 }
+
+.errors {
+  color: red;
+  margin: 0;
+  padding-left: 20px;
+  font-size: x-small;
+}
