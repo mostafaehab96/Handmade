@@ -1,13 +1,13 @@
 :root {
     --m-color: #485460;
-    --alt-color : #669bcc;
-    --header-height : 77px; 
-    --main-transition:0.3s;
+    --alt-color: #669bcc;
+    --header-height: 77px;
+    --main-transition: 0.3s;
     --bg-color: #f7f9f7;
-    --onhover:#e8ecf1;
+    --onhover: #e8ecf1;
 }
 
-*{
+* {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
@@ -15,7 +15,7 @@
     padding: 0;
 }
 
-body{
+body {
     font-family: 'Open Sans', sans-serif;
 }
 
@@ -31,6 +31,9 @@ html {
     -webkit-box-shadow: 0 0 10px #ddd;
     -moz-box-shadow: 0 0 10px #ddd;
     box-shadow: b0 0 10px #ddd;
+    position: sticky;
+    top: 0;
+    z-index: 1100;
 }
 
 .container {
@@ -96,7 +99,7 @@ html {
     color: var(--m-color);
     font-size: 22px;
     font-weight: bold;
-    height:  var(--header-height);
+    height: var(--header-height);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -117,7 +120,7 @@ a {
 .header .links {
     position: relative;
     margin-right: 25px;
-    
+
 }
 
 .header .links .bars-icon {
@@ -172,7 +175,7 @@ a {
     transition-duration: var(--main-transition);
 }
 
-.header .links ul li a:hover{
+.header .links ul li a:hover {
     padding-left: 30px;
     background-color: var(--onhover);
 }
@@ -220,27 +223,27 @@ a {
 
 .header .cart:hover {
     background-color: var(--onhover);
-    transform: translatey(-5px); 
+    transform: translatey(-5px);
 }
 
-.badge:after{
-    content:attr(value);
-    font-size:17px;
+.badge:after {
+    content: attr(value);
+    font-size: 17px;
     color: var(--m-color);
     background: var(--onhover);
-    border-radius:10px;
+    border-radius: 10px;
     padding: 2.5px 5px;
     border-width: 1px;
     border-style: solid;
     border-color: var(--m-color);
-    position:sticky;
+    position: sticky;
     vertical-align: super;
-    
+
 }
 
 /* media query for header  */
-@media (max-width:992px) {
-    .header .logo{
+@media (max-width: 992px) {
+    .header .logo {
         width: 5px;
         font-size: 20px;
         margin-left: 70px;
@@ -250,11 +253,11 @@ a {
         margin-right: -5px !important;
     }
 
-    .header .cart{
+    .header .cart {
         margin-right: -15px;
     }
 
-    .header .login{
+    .header .login {
         font-size: 17px;
         font-weight: 700;
         padding: 5px 18px;
@@ -262,12 +265,12 @@ a {
     }
 }
 
-@media (max-width:767px) {
-    .header{
+@media (max-width: 767px) {
+    .header {
         height: 125px;
     }
 
-    .header .logo{
+    .header .logo {
         font-size: 16px;
         position: absolute;
         left: 20px;
@@ -291,25 +294,25 @@ a {
         top: 0px;
     }
 
-    .badge:after{
-        border-radius:10px;
+    .badge:after {
+        border-radius: 10px;
         font-size: 13px;
         padding: 2.5px 5px;
     }
 }
 
-@media (max-width:340px) {
-    .header{
+@media (max-width: 340px) {
+    .header {
         height: 115px;
     }
 
-    .header .logo{
+    .header .logo {
         font-size: 13px;
         position: absolute;
         left: 0px;
         top: -5px;
     }
-    
+
     .header .login {
         position: absolute;
         right: 15px;
@@ -325,8 +328,8 @@ a {
         font-size: 23px;
     }
 
-    .badge:after{
-        border-radius:10px;
+    .badge:after {
+        border-radius: 10px;
         font-size: 9px;
         padding: 2.5px 5px;
     }
@@ -334,23 +337,23 @@ a {
     .header .links {
         left: 55%;
         top: 75px;
-    }    
+    }
 
     .header .links ul {
         min-width: 120px;
     }
 }
 
-@media (width:540px){
+@media (width: 540px) {
     .header .links {
         left: 75% !important;
-    }    
+    }
 }
 
 @media (min-width: 440px) and (max-width: 766px) {
     .header .links {
         left: 68%;
-    }    
+    }
 }
 
 

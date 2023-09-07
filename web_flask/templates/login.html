@@ -1,11 +1,24 @@
 {% include 'header.html' %}
+{% block styles %}
+    <link rel="stylesheet" href="../static/css/forms-style.css">
+{% endblock %}
+
+<div class="user-sec">
+    <div class="container sign_form">
+        <div class="profile-sec">
+            <form class="profile-form" action="">
+                {{ form.csrf_token }}
+                {{ form.email.label }} {{ form.email }}
+                {{ form.password.label }} {{ form.password }}
+                {{ form.login }}
+            </form>
+        </div>
+    </div>
+</div>
+
 
 <div class="container sign_form">
-    {% from 'bootstrap5/form.html' import render_form %}
-    {{ render_form(form) }}
-</div>
-<div class="container">
     <a href="{{ url_for('signup') }}">Signup if you dont have an account</a>
 </div>
-
+<div style="min-height: 50vh"></div>
 {% include 'footer.html' %}

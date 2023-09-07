@@ -11,12 +11,14 @@
             href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&family=Work+Sans:wght@200;300;400;600;700;800&display=swap"
             rel="stylesheet"
     />
-    <link rel="stylesheet" href="../static/css/style.css">
-    <link rel="stylesheet" href="../static/css/all.min.css"/>
-    <link rel="stylesheet" href="../static/css/header-style.css"/>
-    <link rel="stylesheet" href="../static/css/home-page-style.css"/>
-    <link rel="stylesheet" href="../static/css/cart-page-style.css">
-    <link rel="stylesheet" href="../static/css/footer-style.css">
+    {% block styles %}
+        <link rel="stylesheet" href="../static/css/style.css">
+        <link rel="stylesheet" href="../static/css/all.min.css"/>
+        <link rel="stylesheet" href="../static/css/header-style.css"/>
+        <link rel="stylesheet" href="../static/css/home-page-style.css"/>
+        <link rel="stylesheet" href="../static/css/cart-page-style.css">
+        <link rel="stylesheet" href="../static/css/footer-style.css">
+    {% endblock %}
 </head>
 <body>
 <div class="header" id="header">
@@ -37,7 +39,7 @@
                 <li><a href="#contact">Contact us</a></li>
             </ul>
         </div>
-        <input type="button" class="login" value="Login"><a href="{{ url_for('login') }}"></a>
+        <a href="{{ url_for('login') }}"><input type="button" class="login" value="Login"></a>
         <i class="cart fa-solid fa-cart-shopping"><i class="fa badge fa-lg" value="0"></i></i>
     </div>
 </div>

@@ -1,4 +1,7 @@
 {% include 'header.html' %}
+{% block styles %}
+    <link rel="stylesheet" href="../static/css/forms-style.css">
+{% endblock %}
 
 <div class="container sign_form">
     {% with messages = get_flashed_messages() %}
@@ -10,8 +13,25 @@
     {% endwith %}
 </div>
 
-<div class="container sign_form">
-    {% from 'bootstrap5/form.html' import render_form %}
-    {{ render_form(form) }}
+<div class="user-sec">
+    <div class="container sign_form">
+        <div class="profile-sec">
+            <form class="profile-form" action="">
+                {{ form.csrf_token }}
+                {{ form.name.label }} {{ form.name }}
+                {{ form.email.label }} {{ form.email }}
+                {{ form.email_confirm.label }} {{ form.email_confirm }}
+                {{ form.password.label }} {{ form.password }}
+                {{ form.password_confirm.label }} {{ form.password_confirm }}
+                {{ form.address.label }} {{ form.address }}
+                {{ form.postal_code.label }} {{ form.postal_code }}
+                {{ form.about.label }} {{ form.about }}
+                {{ form.confirm }}
+            </form>
+        </div>
+    </div>
+</div>
+<div class="sign_form">
+
 </div>
 {% include 'footer.html' %}
