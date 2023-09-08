@@ -36,7 +36,7 @@
             <ul>
                 <li><a href="{{ url_for('home') }}">Home</a></li>
                 {% if logged_in %}
-                    <li><a href="#Account">Account</a></li>
+                    <li><a href="{{ url_for('account') }}">Account</a></li>
                 {% endif %}
                 <li><a href="#About">About</a></li>
                 <li><a href="#contact">Contact us</a></li>

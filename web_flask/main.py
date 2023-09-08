@@ -1,13 +1,10 @@
-import flask
-from flask import Flask, render_template, redirect, url_for, request, flash, session, jsonify, make_response
+
+from flask import Flask, render_template, redirect, url_for, flash, jsonify
 from models import storage
 from werkzeug.security import check_password_hash
-from flask_login import LoginManager, login_user, login_manager, logout_user, current_user, login_required
-from models.user import User
+from flask_login import LoginManager, login_user, logout_user, current_user, login_required
 from models.product import Product
-from forms import SignupForm, LoginFrom
-from flask_bootstrap import Bootstrap5
-from sqlalchemy import select
+from forms import SignupForm, LoginFrom, AddProductForm
 from models.user import User
 from models.cart import Cart
 
@@ -15,7 +12,6 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
 login_manager = LoginManager()
 login_manager.init_app(app)
-bootstrap = Bootstrap5(app)
 
 
 @app.teardown_appcontext
@@ -33,7 +29,6 @@ def load_user(user_id):
 def home():
     products = storage.all("Product")
     logged_in = current_user.is_active
-    session['current_cart'] = []
     return render_template("home.html", products=products, logged_in=logged_in)
 
 
@@ -103,16 +98,15 @@ def logout():
 @app.route('/add_cart/<product_id>')
 def add_cart(product_id):
     if current_user.is_active:
-        print("User is active!")
         product = storage.get("Product", product_id)
         user = storage.get("User", current_user.get_id())
-        if not product in user.cart.products:
+        if product not in user.cart.products:
             user.cart.products.append(product)
             storage.save()
         return jsonify({"status": "OK"}), 200
     else:
-        flash("You have to login first")
         return jsonify({"status": "Login"})
+
 
 @app.route("/cart/count")
 def cart_count():
@@ -138,7 +132,6 @@ def cart():
                            logged_in=current_user.is_active)
 
 
-
 @app.route('/cart/remove/<product_id>')
 @login_required
 def cart_remove(product_id):
@@ -148,6 +141,35 @@ def cart_remove(product_id):
     storage.save()
 
     return jsonify({"status": "ok"}), 200
+
+
+@app.route('/account')
+@login_required
+def account():
+    user = storage.get("User", current_user.get_id())
+    return render_template('user_profile.html', user=user, logged_in=True)
+
+
+@app.route("/add_product", methods=["POST"])
+@login_required
+def add_product():
+    add_form = AddProductForm()
+
+    if add_form.validate_on_submit():
+        name = add_form.name.data
+        price = add_form.price.data
+        image = add_form.image.data
+        description = add_form.description.data
+        user = storage.get("User", current_user.get_id())
+        product = Product(name=name,
+                          price=price,
+                          image=image,
+                          description=description
+                          )
+        user.products.append(product)
+        storage.save()
+
+    return redirect(url_for('account'))
 
 
 if __name__ == "__main__":
