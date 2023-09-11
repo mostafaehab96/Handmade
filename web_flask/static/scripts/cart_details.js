@@ -3,13 +3,14 @@ const removeButtons = document.querySelectorAll('.p-remove')
 const cartContent = document.querySelectorAll('.side')
 const cartValue = document.querySelector(".badge");
 const total_price = document.querySelector('.p-t-price').childNodes[0]
-
 let value = cartContent.length;
 let price = Number(total_price.textContent)
 
+
 cartValue.setAttribute('value', value)
 
-removeButtons.forEach(function(button) {
+
+removeButtons.forEach(function (button) {
     button.addEventListener("click", function () {
         const product_price = Number(button.getAttribute('product_price'))
         const product_id = button.getAttribute('product_id')
@@ -22,7 +23,7 @@ removeButtons.forEach(function(button) {
 
         $.get(`/cart/remove/${product_id}`, function (data) {
             if (data.status === "ok") {
-                swal({title:"Product Removed"});
+                swal({title: "Product Removed"});
             }
         })
         if (value === 0) {

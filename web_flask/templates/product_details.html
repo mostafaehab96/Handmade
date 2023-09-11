@@ -19,7 +19,7 @@
                     <span class="stars fa fa-star checked"></span>
                     <span class="stars fa fa-star"></span>
                     </span>  </span>
-            <input class="p-det-add" type="button" value="Add To Cart">
+            <input class="p-det-add" type="button" value="Add To Cart" product_id="{{ product.id }}">
         </div>
     </div>
 </div>
@@ -47,5 +47,8 @@
         <input class="add-review-btn" type="button" value="Add Review">
     </div>
 </div>
-{% include 'footer.html' %}
+{% extends "footer.html" %}
+{% block scripts %}
+<script src="../static/scripts/product_details.js"></script>
+{% endblock %}
 
