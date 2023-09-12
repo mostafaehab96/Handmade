@@ -171,6 +171,12 @@ def add_product():
 
     return redirect(url_for('account'))
 
+@app.route("/orders")
+@login_required
+def view_orders():
+    user = storage.get("User", current_user.get_id())
+    return render_template("orders.html", orders=user.orders, logged_in=current_user.is_active)
+
 
 if __name__ == "__main__":
     app.run()

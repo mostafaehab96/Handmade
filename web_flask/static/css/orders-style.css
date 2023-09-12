@@ -1,0 +1,212 @@
+:root {
+    --m-color: #485460;
+    --alt-color: #669bcc;
+    --header-height: 77px;
+    --main-transition: 0.3s;
+    --bg-color: #f7f9f7;
+    --onhover: #e8ecf1;
+}
+
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* //////////////////////////////////////////// */
+.container .ord-h {
+    color: var(--m-color);
+}
+
+.orders-s .container .order {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 100px;
+    border: 1px solid white;
+    padding: 20px 20px 20px 20px;
+    height: fit-content;
+    border-radius: 10px;
+    box-shadow: 0 3px 15px #00000028;
+}
+
+
+.orders-s .container .order .order-data {
+    display: flex;
+    width: 100%;
+    background-color: var(--bg-color);
+    border-radius: 10px;
+    border: 2px solid var(--onhover);
+    box-shadow: 0 3px 15px #00000020;
+    margin-bottom: 60px;
+}
+
+.order-data .order-items {
+    display: flex;
+    flex-direction: column;
+    height: 270px;
+    width: 22%;
+    background-color: #e8e8e93b;
+    overflow-y: auto;
+    direction: rtl;
+    border-right: 1px solid var(--m-color);
+    margin-right: 20px;
+}
+
+.order-data .order-items::-webkit-scrollbar {
+    width: 7px;
+    background-color: #ddd;
+}
+
+.order-data .order-items::-webkit-scrollbar-track {
+    background-color: #ddd;
+    -webkit-box-shadow: inset 0 0 6px #0000004d;
+
+}
+
+.order-data .order-items::-webkit-scrollbar-thumb {
+    background-color: #7393a2;
+    -webkit-box-shadow: inset 0 0 6px #0000004d;
+
+}
+
+.orders-s .container .order .order-data .order-info {
+    width: 75%;
+    padding-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    gap: 6px;
+}
+
+.orders-s .container .order .order-data .order-info::before {
+    content: "";
+    position: absolute;
+    height: 1px;
+    width: 100%;
+    background-color: var(--m-color);
+    bottom: 222px;
+}
+
+.order-info h4 span {
+    color: var(--m-color);
+    font-weight: 800;
+
+}
+
+.order-info .cell {
+    color: #1e6fba;
+    width: 25%;
+
+
+}
+
+
+.order-data .order-items .item {
+    display: flex;
+    align-items: center;
+    direction: ltr;
+    margin-left: 10px;
+}
+
+.order-data .order-items img {
+    height: 50px;
+    width: 50px;
+    margin-top: 20px;
+}
+
+.order-data .order-items .item-name {
+    margin-left: 10px;
+    margin-top: 20px;
+    font-size: 1.1em;
+    font-weight: 700;
+    color: var(--m-color);
+}
+
+@media (max-width: 992px) {
+    .header .container {
+        width: 100%;
+    }
+
+    .orders-s .container {
+        width: 100%;
+    }
+}
+
+@media (min-width: 767px) and (max-width: 992px) {
+    .order-data .order-items {
+        width: 30%;
+    }
+
+    .orders-s .container .order .order-data .order-info {
+        width: 70%;
+
+    }
+}
+
+
+@media (max-width: 767px) {
+    .orders-s .container .order .order-data {
+        flex-wrap: wrap;
+
+    }
+
+    .order-data .order-items {
+        margin-top: 30px;
+        width: 100%;
+        border-right: none;
+        border-bottom: 2px solid var(--m-color);
+        margin-right: 0
+    }
+
+    .order-data .order-items img {
+        height: 130px;
+        width: 35%;
+        margin-top: 20px;
+    }
+
+    .order-data .order-items .item-name {
+        font-size: 1.3em;
+    }
+
+    .order-data .order-info {
+        width: 100% !important;
+        height: 360px;
+        flex-direction: column;
+        flex-wrap: wrap;
+        padding: 10px;
+    }
+
+    .order-data .order-info .one, .two, .three, .four {
+        line-height: 0.8;
+        padding-bottom: 15px;
+        border-bottom: 1px solid var(--m-color);
+    }
+
+
+    .order-info .cell {
+        margin-left: 10px;
+        color: #1e6fba;
+        width: 100%;
+        overflow: hidden;
+    }
+
+    .orders-s .container .order .order-data .order-info::before {
+        content: "";
+        position: absolute;
+        height: 0px;
+        width: 0px;
+        bottom: 0px;
+    }
+}
