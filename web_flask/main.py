@@ -1,4 +1,3 @@
-
 from flask import Flask, render_template, redirect, url_for, flash, jsonify
 from models import storage
 from werkzeug.security import check_password_hash
@@ -170,6 +169,7 @@ def add_product():
         storage.save()
 
     return redirect(url_for('account'))
+
 
 @app.route("/orders")
 @login_required

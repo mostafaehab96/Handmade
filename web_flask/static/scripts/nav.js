@@ -1,16 +1,15 @@
-// show the links //
-const baars = document.querySelector(".bars-icon");
-baars.addEventListener("click", function () {
-  document.querySelector("ul").style.display = "block";
-  document.querySelector(".nd").style.width = "100%";
-});
+// show the mobile-nav //
+const tog = document.querySelector(".tog-btn");
+const barsIcon = document.querySelector(".tog-btn i");
+const mobNav = document.querySelector(".mobile-nav");
 
-// rehide the links //
-document.body.addEventListener(
-  "click",
-  function () {
-    document.querySelector("ul").style.display = "none";
-    document.querySelector(".nd").style.width = "60%";
-  },
-  true
-);
+tog.onclick = () => {
+  mobNav.classList.toggle("show-nav");
+  const activeClass = mobNav.classList.contains("show-nav");
+
+  if (activeClass) {
+    barsIcon.classList = "fa-solid fa-xmark";
+  } else {
+    barsIcon.classList = "fa-solid fa-bars";
+  }
+};

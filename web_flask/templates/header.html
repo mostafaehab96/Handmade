@@ -23,33 +23,43 @@
     {% endblock %}
 </head>
 <body>
-<div class="header" id="header">
+<header class="header" id="header">
     <div class="container">
         <a href="" class="logo"
-        ><i class="shop fa-solid fa-shop fa-2x"></i>HandMade</a>
-        <div class="links">
-          <span class="bars-icon">
-            <span></span>
-            <span class="nd"></span>
-            <span></span>
-          </span>
-            <ul>
-                <li><a href="{{ url_for('home') }}">Home</a></li>
+        ><i class="shop fa-solid fa-shop fa-2x"></i>Market</a
+        >
+        <div class="navbar">
+            <ul class="nav-links">
+                <li><a class="h-links" href="{{ url_for('home') }}">Home</a></li>
+                <li><a class="h-links" href="#About">About</a></li>
+                <li><a class="h-links" href="#contact">Contact</a></li>
                 {% if logged_in %}
-                    <li><a href="{{ url_for('account') }}">Account</a></li>
+                    <li><a class="h-links" href="{{ url_for('account') }}">Account</a></li>
+                    <li><a class="log" href="{{ url_for('logout') }}">Logout</a></li>
+                {% else %}
+                    <li><a class="log" href="{{ url_for('login') }}">Login</a></li>
                 {% endif %}
-                <li><a href="#About">About</a></li>
-                <li><a href="#contact">Contact us</a></li>
             </ul>
+            <div class="tog-btn">
+                <i class="fa-solid fa-bars"></i>
+            </div>
         </div>
-        {% if logged_in %}
-            <a href="{{ url_for('logout') }}"><input type="button" class="login" value="Logout"></a>
-        {% else %}
-            <a href="{{ url_for('login') }}"><input type="button" class="login" value="Login"></a>
-        {% endif %}
-        <i class="cart fa-solid fa-cart-shopping"><i class="fa badge fa-lg" value="0"></i></i>
+        <i class="cart fa-solid fa-cart-shopping"
+        ><i class="fa badge fa-lg" value="0"></i
+        ></i>
+        <div class="mobile-nav">
+            <li><a class="h-links" href="{{ url_for('home') }}">Home</a></li>
+            <li><a class="h-links" href="#About">About</a></li>
+            <li><a class="h-links" href="#contact">Contact</a></li>
+            {% if logged_in %}
+                <li><a class="h-links" href="{{ url_for('account') }}">Account</a></li>
+                <li><a class="log" href="{{ url_for('logout') }}">Logout</a></li>
+            {% else %}
+                <li><a class="log" href="{{ url_for('login') }}">Login</a></li>
+            {% endif %}
+        </div>
     </div>
-</div>
+</header>
 
 
 

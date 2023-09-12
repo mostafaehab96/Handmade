@@ -41,14 +41,16 @@ html {
 .carts-side .container .side-sec{
     height: 550px;
     width: 50%;
-    background-color: #e3f4f294;
+    background-color: #f7f9f77e;
     box-shadow: 0 2px 16px #00000019;
     padding: 0 20px 20px 18px;
     margin-bottom: 50px;
     overflow: auto;
     direction: rtl;
-    border: 2px solid #c2c2c2;
+    border: 2px solid #F5FAFF;
     border-radius: 10px;
+    border: 1px solid #c2c2c2;
+
 }
 
 
@@ -76,18 +78,28 @@ html {
 
 .carts-side .container .side .p-cart-img {
     margin-top: 30px;
-    height: 150px;
+    height: 190px;
     width: 50%;
 }
 
 .carts-side .container .side .p-cart-info {
     background-color: #ffffff;
     padding: 10px 15px;
-    line-height: 2em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
     margin-top: 30px;
-    height: 150px;
+    height: 190px;
     width: 50%;
     position: relative;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #c2c2c2 #c2c2c2 #c2c2c2 transparent;
+}
+@media (max-width: 520px){
+    .carts-side .container .side .p-cart-info {
+        border-color: transparent #c2c2c2 #c2c2c2 #c2c2c2;
+    }
 }
 
 .carts-side .container .side .p-cart-info .p-cart-name {
@@ -132,17 +144,17 @@ html {
 
 .carts-side .container .p-cart-check {
     height: 450px;
-    width: 40%;
+    width: 45%;
     margin-bottom: auto;
     margin-left: 20px;
     display: flex;
     flex-direction: column;
     line-height: 4.5em;
-    box-shadow: 0 3px 16px #00000021;
+    box-shadow: 0 3px 16px #00000017;
     border-radius: 10px;
     background-color: #f4fffe53;
     overflow: hidden;
-    border: 2px solid #c2c2c2;
+    border: 1px solid #c2c2c2;
 }
 
 @media (min-width:767px) and (max-width:992px) {
@@ -161,14 +173,14 @@ html {
     .carts-side .container .p-cart-check .cash {
         font-size: 1.2em !important;
        }
-    
+
 }
 @media(max-width:767px) {
     .carts-side .container .p-cart-check{
         width:100%;
         margin-left: 0;
     }
-    
+
 }
 
 @media (min-width: 500px) and (max-width: 767px) {
@@ -209,7 +221,7 @@ html {
     font-size: 1.8em;
     font-weight: 750px;
     color: #16355a;
-    background-color: #e3f4f294;
+    background-color: #f7f9f77e;
     padding-left: 20px;
 }
 
@@ -232,7 +244,7 @@ html {
     font-size: 1.7em;
     font-weight: 600px;
     color: #16355a;
-    background-color: #e3f4f294;
+    background-color: #f7f9f77e;
     padding-left: 20px;
 
 
@@ -259,7 +271,7 @@ html {
 
 hr{
     height: 1px;
-    background-color: #16355a;
+    background-color: #b2d5ff;
 }
 
 
