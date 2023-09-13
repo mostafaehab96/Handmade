@@ -1,36 +1,45 @@
 {% include "header.html" %}
-
-<div class="cover-photo">
-    <div class="typing-container">
-        <div class="typing-text">
-            Welcome to Handmade!
-        </div>
-    </div>
-</div>
+{% block styles %}
+<link rel="stylesheet" href="../static/css/header-home-style.css">
+{% endblock %}
 
 <div class="landing">
+    <div
+            class="cover-photo"
+            style="
+          background-image: url(https://mostafaehab96.github.io/landing_page/assets/img/courtney-cook-QRVSQH7OeX4-unsplash.jpg);
+        "
+    >
+        <div class="typing-container">
+            <div class="typing-text">Welcome to Handmade!</div>
+            <div class="typing-text-2">We believe in talents.</div>
+        </div>
+    </div>
     <h2 class="p-heading" id="products">Products</h2>
 </div>
 
 <div class="products">
     <div class="container">
         {% for product in products %}
-            <div class="p-card">
+            <div class="p-card-container">
                 <a href="{{ url_for('show_product', product_id=product.id) }}">
                     <img src="{{ product.image }}" alt="product image">
-                </a>
-                <div class="product-info">
-                    <h3 class="Product-name">{{ product.name }}</h3>
-                    <p class="Product-description">{{ product.description }}</p>
-                    <div class="price-add">
-                        <span class="price">{{ product.price }} <span class="currency"> EGP </span> </span>
-                        <input class="p-card-add" type="button" value="Add To Card" product_id="{{ product.id }}">
-                    </div>
-                </div>
-            </div>
 
+                    <div class="product-info">
+                        <h3 class="Product-name">{{ product.name }}</h3>
+                        <p class="Product-description">{{ product.description }}</p>
+                        <div class="price-add">
+                            <span class="price">{{ product.price }} <span class="currency"> EGP </span> </span>
+                        </div>
+                    </div>
+                </a>
+                <a class="p-card-add" product_id="{{ product.id }}"> Add To Card </a>
+            </div>
         {% endfor %}
     </div>
 </div>
 
 {% include "footer.html" %}
+{% block scripts %}
+    <script src="../static/scripts/cart_home.js"></script>
+{% endblock %}

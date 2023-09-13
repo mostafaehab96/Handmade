@@ -1,5 +1,6 @@
 {% include "header.html" %}
 {% block styles %}
+    <link rel="stylesheet" href="../static/css/header-style.css"/>
     <link rel="stylesheet" href="../static/css/user-profile-style.css">
 {% endblock %}
 <div class="pro-heading">
@@ -79,7 +80,8 @@
             <br>
             <div class="pro-btns">
                 <a href="#pop"> <input class="pop-btn" type="submit" value="Edit"></a>
-                <a href=""> <input class="products-btn" type="submit" value="Add Product"></a>
+                <a href="{{ url_for('add_product') }}"> <input class="products-btn" type="submit"
+                                                               value="Add Product"></a>
                 <a href="{{ url_for('view_orders') }}"> <input class="orders-btn" type="submit" value="My Orders"></a>
             </div>
         </div>
@@ -91,17 +93,19 @@
 <div class="products">
     <div class="container">
         {% for product in user.products %}
-            <a href="{{ url_for('show_product', product_id=product.id) }}" class="p-card">
-                <img src="{{ product.image }}" alt="product image">
-                <div class="product-info">
-                    <h3 class="Product-name">{{ product.name }}</h3>
-                    <p class="Product-description">{{ product.description }}</p>
-                    <div class="price-add">
-                        <span class="price">{{ product.price }}<span class="currency"> EGP </span> </span>
-                        <input class="p-card-add" type="button" value="Add To Card">
+            <div class="p-card-container">
+                <a href="{{ url_for('show_product', product_id=product.id) }}" class="p-card">
+                    <img src="{{ product.image }}" alt="product image">
+                    <div class="product-info">
+                        <h3 class="Product-name">{{ product.name }}</h3>
+                        <p class="Product-description">{{ product.description }}</p>
+                        <div class="price-add">
+                            <span class="price">{{ product.price }}<span class="currency"> EGP </span> </span>
+                        </div>
                     </div>
-                </div>
-            </a>
+                </a>
+                <a href="{{ url_for('edit_product', product_id=product.id) }}" class="p-card-add"> Edit Product </a>
+            </div>
         {% endfor %}
     </div>
 </div>

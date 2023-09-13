@@ -1,6 +1,7 @@
 {% include 'header.html' %}
 {% block styles %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/product_details.css') }}"/>
+    <link rel="stylesheet" href="../static/css/header-style.css"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/product_details.css') }}"/>
 {% endblock %}}
 <div class="p-details">
     <div class="container">
@@ -29,26 +30,26 @@
 <div class="reviews-sec">
     <div class="container">
         {% for review in product.reviews %}
-        <div class="review">
-            <div class="users-review">
-                <i class="user-icon fa-solid fa-user-large"></i>
-                <span class="user-name">{{ review.user.name }}</span>
-                <span class="star">
+            <div class="review">
+                <div class="users-review">
+                    <i class="user-icon fa-solid fa-user-large"></i>
+                    <span class="user-name">{{ review.user.name }}</span>
+                    <span class="star">
                         <span class="stars fa fa-star checked"></span>
                         <span class="stars fa fa-star checked"></span>
                         <span class="stars fa fa-star checked"></span>
                         <span class="stars fa fa-star checked"></span>
                         <span class="stars fa fa-star"></span>
                         </span>
-                <p class="review-description">{{ review.text }}</p>
+                    <p class="review-description">{{ review.text }}</p>
+                </div>
             </div>
-        </div>
         {% endfor %}
         <input class="add-review-btn" type="button" value="Add Review">
     </div>
 </div>
 {% extends "footer.html" %}
 {% block scripts %}
-<script src="../static/scripts/product_details.js"></script>
+    <script src="../static/scripts/product_details.js"></script>
 {% endblock %}
 

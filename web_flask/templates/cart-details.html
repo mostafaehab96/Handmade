@@ -1,4 +1,7 @@
 {% include "header.html" %}
+{% block styles %}
+<link rel="stylesheet" href="../static/css/header-style.css"/>
+{% endblock %}
 {% if products|length %}
     <div class="container add_margin">
         <h1 class="ur-cart-h">Your Cart</h1>
@@ -41,7 +44,7 @@
     </div>
     <div style="min-height: 50vh"></div>
 {% endif %}
-{% extends "footer.html" %}
+{% include "footer.html" %}
 {% block scripts %}
 <script src="../static/scripts/cart_details.js"></script>
 {% endblock %}

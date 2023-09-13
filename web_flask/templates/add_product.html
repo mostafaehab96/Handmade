@@ -1,13 +1,17 @@
-{% include 'header.html' %}
+{% include "header.html" %}
+
 {% block styles %}
     <link rel="stylesheet" href="../static/css/header-style.css"/>
     <link rel="stylesheet" href="../static/css/forms-style.css">
 {% endblock %}
 
-
 {% from "_formhelpers.html" import render_field %}
 <div class="container add_margin">
-    <h1 class="ur-cart-h">SignUp</h1>
+    {% if editing %}
+    <h1 class="ur-cart-h">Edit Product</h1>
+    {% else %}
+    <h1 class="ur-cart-h">Add Product</h1>
+    {% endif %}
 </div>
 {% with messages=get_flashed_messages() %}
     {% if messages %}
@@ -16,23 +20,21 @@
         {% endfor %}
     {% endif %}
 {% endwith %}
+
 <div class="user-sec">
     <div class="container add_margin">
         <div class="profile-sec">
             <form class="profile-form" method="post" novalidate>
                 {{ form.csrf_token }}
                 {{ render_field(form.name) }}
-                {{ render_field(form.email) }}
-                {{ render_field(form.email_confirm) }}
-                {{ render_field(form.password) }}
-                {{ render_field(form.password_confirm) }}
-                {{ render_field(form.address) }}
-                {{ render_field(form.postal_code) }}
-                {{ render_field(form.about) }}
+                {{ render_field(form.price) }}
+                {{ render_field(form.image) }}
+                {{ render_field(form.description) }}
                 {{ form.confirm }}
             </form>
         </div>
     </div>
 </div>
 <div class="add_margin"></div>
-{% include 'footer.html' %}
+
+{% include "footer.html" %}

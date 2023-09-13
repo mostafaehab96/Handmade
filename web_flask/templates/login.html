@@ -1,11 +1,12 @@
 {% include 'header.html' %}
 {% block styles %}
+    <link rel="stylesheet" href="../static/css/header-style.css"/>
     <link rel="stylesheet" href="../static/css/forms-style.css">
 {% endblock %}
 
 {% from "_formhelpers.html" import render_field %}
 <div class="container add_margin">
-    <h1>Login</h1>
+    <h1 class="ur-cart-h">Login</h1>
 </div>
 {% with messages=get_flashed_messages() %}
     {% if messages %}

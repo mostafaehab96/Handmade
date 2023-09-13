@@ -30,4 +30,4 @@ class AddProductForm(FlaskForm):
     price = FloatField("Price", validators=[DataRequired()], render_kw={"class": "in-field"})
     image = URLField("Image URL", validators=[DataRequired(), URL()], render_kw={"class": "in-field"})
     description = TextAreaField("Description", validators=[DataRequired()], render_kw={"class": "in-field"})
-    save = SubmitField("Save", render_kw={"class": "save"})
+    confirm = SubmitField("Confirm", render_kw={"class": "save"})

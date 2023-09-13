@@ -149,7 +149,7 @@ def account():
     return render_template('user_profile.html', user=user, logged_in=True)
 
 
-@app.route("/add_product", methods=["POST"])
+@app.route("/add_product", methods=["GET", "POST"])
 @login_required
 def add_product():
     add_form = AddProductForm()
@@ -167,8 +167,26 @@ def add_product():
                           )
         user.products.append(product)
         storage.save()
+        return redirect(url_for('account'))
+    else:
+        return render_template("add_product.html", form=add_form, logged_in=True)
 
-    return redirect(url_for('account'))
+@app.route("/edit_product/<product_id>", methods=["GET", "POST"])
+@login_required
+def edit_product(product_id):
+    product = storage.get("Product", product_id)
+    edit_form = AddProductForm(name=product.name,
+                               price=product.price,
+                               image=product.image,
+                               description=product.description)
+    if edit_form.validate_on_submit():
+        product.name = edit_form.name.data
+        product.price = edit_form.price.data
+        product.image = edit_form.image.data
+        product.description = edit_form.description.data
+        product.save()
+        return redirect(url_for('account'))
+    return render_template("add_product.html", logged_in=True, form=edit_form)
 
 
 @app.route("/orders")

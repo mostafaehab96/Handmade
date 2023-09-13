@@ -16,11 +16,19 @@
 }
 
 body {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
     font-family: 'Open Sans', sans-serif;
 }
 
 html {
+    height: 103%;
     scroll-behavior: smooth;
+}
+
+main {
+    flex: 1;
 }
 
 /* //////////////////////////////////////// */
@@ -115,4 +123,9 @@ html {
         margin-left: 15px;
         margin-right: 15px;
     }
+}
+
+.add_margin {
+    margin-top: 50px;
+    justify-content: center;
 }

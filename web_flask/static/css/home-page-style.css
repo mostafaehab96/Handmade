@@ -1,13 +1,13 @@
 :root {
     --m-color: #485460;
-    --alt-color : #669bcc;
-    --header-height : 77px; 
-    --main-transition:0.3s;
+    --alt-color: #669bcc;
+    --header-height: 77px;
+    --main-transition: 0.3s;
     --bg-color: #f7f9f7;
-    --onhover:#e8ecf1;
+    --onhover: #e8ecf1;
 }
 
-*{
+* {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
@@ -15,7 +15,7 @@
     padding: 0;
 }
 
-body{
+body {
     font-family: 'Open Sans', sans-serif;
 }
 
@@ -36,31 +36,93 @@ html {
     align-items: center;
 }
 
+/* ////////////////////// */
 
-.landing img {
-    width: 100%;
-    height: 75vh;
-    margin-top: 0;
-}
-
-.land {
+.cover-photo {
     position: relative;
+    margin-bottom: 3rem;
+    padding-top: calc(8rem + 57px);
+    padding-bottom: 25rem;
+    background: no-repeat center;
+    background-size: cover;
 }
 
-/* media query for landing image */
-@media (max-width: 992px) {
-    .landing img{
-        height: 60vh;
+.cover-photo::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #212529;
+    opacity: 0.5;
+}
+
+
+.typing-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    overflow: hidden;
+}
+
+.typing-text {
+    white-space: nowrap;
+    overflow: hidden;
+    font-weight: 800;
+    line-height: 1.2;
+    font-size: 2.7rem;
+    color: white;
+    animation: typing 1s steps(30) 1, blink-caret 0.75s step-end 1;
+}
+
+.typing-text-2 {
+    white-space: nowrap;
+    overflow: hidden;
+    font-size: 1.5rem;
+    font-weight: 300;
+    line-height: 1.1;
+    display: block;
+    margin-top: 0.625rem;
+    color: white;
+    animation: reveal 2.9s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+@media (max-width: 767px) {
+    .typing-text {
+        font-size: 1.6rem;
+        line-height: 1;
 
     }
-}
-@media (max-width: 768px) {
-    .landing img{
-        height: 40vh;
+
+    .typing-text-2 {
+        line-height: 1;
+        font-size: 1.3rem;
     }
 }
 
-.p-heading{
+@keyframes typing {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+@keyframes reveal {
+    0% {
+        transform: translate(0, 100%);
+    }
+    100% {
+        transform: translate(0, 0);
+    }
+}
+
+
+.p-heading {
     text-align: center;
     margin: 40px auto;
     font-size: 40px;
@@ -73,10 +135,10 @@ html {
     position: relative;
     overflow: hidden;
     transition-duration: var(--main-transition);
-
 }
+
 .p-heading::before {
-    content:"";
+    content: "";
     position: absolute;
     height: 5px;
     width: 100%;
@@ -85,16 +147,19 @@ html {
     left: -100%;
     transition-duration: var(--main-transition);
 }
+
 .p-heading:hover {
     color: white;
     background-color: var(--m-color);
     transition-delay: 0.3s;
 }
-.p-heading:hover::before{
+
+.p-heading:hover::before {
     left: -50%;
 }
+
 .p-heading::after {
-    content:"";
+    content: "";
     position: absolute;
     height: 5px;
     width: 100%;
@@ -103,86 +168,78 @@ html {
     right: -100%;
     transition-duration: var(--main-transition);
 }
-.p-heading:hover::after{
+
+.p-heading:hover::after {
     right: -50%;
 }
+
 /* media query for p-heading */
 @media (max-width: 1400px) {
     .p-heading {
-    font-size: 35px;
+        font-size: 35px;
     }
 }
+
 @media (max-width: 992px) {
     .p-heading {
-    font-size: 30px;
+        font-size: 30px;
 
     }
 }
+
 @media (max-width: 768px) {
     .p-heading {
-    font-size: 24px;
+        font-size: 26px;
 
     }
 }
 
 .products {
     position: relative;
-    padding-top: 80px;
-    padding-bottom: 80px;
+    margin-top: 30px;
+    margin-bottom: 80px;
 
-}
-
-@media (max-width: 768px) {
-    .products {
-    padding-top: 20px;
-
-    }
-}
-@media (max-width: 992px) {
-    .products {
-    padding-top: 45px;
-
-    }
 }
 
 
 .products .container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px , 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
     gap: 45px;
 }
 
 
-.p-card{
-    box-shadow: 0 3px 16px rgb( 0 0 0 / 13%);
+.p-card-container {
+
+    box-shadow: 0 3px 16px #00000021;
     border-radius: 15px;
     overflow: hidden;
     transition-duration: var(--main-transition);
+    position: relative;
 }
-.p-card:hover{
-    box-shadow: 0 3px 16px rgb( 0 0 0 / 23%);
+
+.p-card-container:hover {
+    box-shadow: 0 3px 16px rgb(0 0 0 / 23%);
     transform: translateY(-15px);
 }
 
-.products .container .p-card img {
+.products .container .p-card-container img {
     width: 100%;
     height: 300px;
     max-width: 100%;
 }
 
-.product-info{
-    padding: 25px;
+.product-info {
+    padding: 20px 20px 35px 20px;
 }
 
 .product-info .Product-name {
     margin: 0;
+    color: var(--m-color);
 }
-textarea{
-    width: 100%;
-    border: none;
-}
+
 .product-info .Product-description {
-    margin: 12px 0 0  ;
+    margin: 12px 0 0;
     line-height: 1.7;
     color: var(--m-color);
     height: 130px;
@@ -194,27 +251,24 @@ textarea{
 }
 
 
-
 .product-info .Product-description::-webkit-scrollbar {
     width: 3px;
-    display :block !important;
-  }
-  
+    display: block !important;
+}
+
 .product-info .Product-description::-webkit-scrollbar-track {
     background-color: var(--alt-color);
-  }
-  
+}
+
 .product-info .Product-description::-webkit-scrollbar-thumb {
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,1);
-  }
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 1);
+}
 
 .price-add {
     padding-top: 25px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-
-
 }
 
 .price-add .price {
@@ -230,21 +284,23 @@ textarea{
 
 }
 
-.price-add .p-card-add {
-	padding: 10px 25px;
-	font-size: 16px;
-	border-radius: 10px;
+.p-card-container .p-card-add {
+    padding: 10px 25px;
+    font-size: 16px;
+    border-radius: 10px;
     font-weight: 700;
     background-color: var(--bg-color);
-	color: var(--m-color);
-	position: relative;
-	transition-duration: var(--main-transition);
-    overflow:hidden;
+    color: var(--m-color);
+    position: absolute;
+    bottom: 23px;
+    right: 25px;
+    transition-duration: var(--main-transition);
+    overflow: hidden;
     border: 1px solid var(--alt-color);
     cursor: pointer;
 }
 
-.price-add .p-card-add:hover {
+.p-card-container .p-card-add:hover {
     background-color: var(--onhover);
-    transform: translatey(7px); 
+    transform: translatey(7px);
 }
