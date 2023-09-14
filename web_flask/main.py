@@ -1,11 +1,13 @@
-from flask import Flask, render_template, redirect, url_for, flash, jsonify
+from flask import Flask, render_template, redirect, url_for, flash, jsonify, request
 from models import storage
 from werkzeug.security import check_password_hash
 from flask_login import LoginManager, login_user, logout_user, current_user, login_required
 from models.product import Product
-from forms import SignupForm, LoginFrom, AddProductForm
+from forms import SignupForm, LoginFrom, AddProductForm, ContactForm
 from models.user import User
 from models.cart import Cart
+from models.order import Order
+import smtplib
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
@@ -198,12 +200,79 @@ def edit_product(product_id):
         return redirect(url_for('account'))
     return render_template("add_product.html", logged_in=True, form=edit_form)
 
+@app.route("/edit_user/<user_id>", methods=["POST"])
+@login_required
+def edit_user(user_id):
+    user = storage.get("User", user_id)
+    name = request.form['name']
+    email = request.form['email']
+    address = request.form['address']
+    postal_code = request.form['postal_code']
+    user.name = name
+    user.email = email
+    user.address = address
+    user.postal_code = postal_code
+    user.save()
+    return redirect(url_for('account'))
+
+@app.route("/checkout", methods=["GET", "POST"])
+@login_required
+def checkout():
+    user = storage.get("User", current_user.get_id())
+    products = user.cart.products
+    total_price = sum([product.price for product in products])
+    order = Order(address=user.address,
+                  total_price=total_price,
+                  user_id=user.id
+                  )
+    order.products = products
+    order.save()
+    user.cart.products = []
+    storage.save()
+
+    return redirect(url_for('view_orders'))
+
+
+
 
 @app.route("/orders")
 @login_required
 def view_orders():
     user = storage.get("User", current_user.get_id())
     return render_template("orders.html", orders=user.orders, logged_in=current_user.is_active)
+
+
+@app.route("/about")
+def about():
+    return render_template("about.html", logged_in=current_user.is_active)
+
+
+@app.route("/contact", methods=["GET", "POST"])
+def contact():
+    contact_form = ContactForm()
+    if contact_form.validate_on_submit():
+        name = contact_form.name.data
+        email = contact_form.email.data
+        message = contact_form.message.data
+        try:
+            send_message(name, email, message)
+            return redirect(url_for('home'))
+        except Exception as error:
+            print(error)
+            flash("Some Error Happened! Message wasn't sent")
+            return redirect(url_for('contact'))
+
+    return render_template("contact.html", form=contact_form, logged_in=current_user.is_active)
+
+
+def send_message(name, email, message):
+    with smtplib.SMTP('smtp.gmail.com', port=587) as connection:
+        connection.starttls()
+        my_email = 'mostafa96ehab@gmail.com'
+        all_message = f"Sender:{name}\nemail:{email}\nmessage:{message}"
+        connection.login(user=my_email, password="bnrafnqyepmvvftl")
+        connection.sendmail(from_addr=my_email, to_addrs=my_email,
+                            msg=f"Subject:New Handmade message\n\n {all_message}")
 
 
 if __name__ == "__main__":

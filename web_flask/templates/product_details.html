@@ -49,11 +49,30 @@
                 </div>
             </div>
         {% endfor %}
-        <input class="add-review-btn" type="button" value="Add Review">
+        <div class="add-rev-sec">
+            <h2 class="l-ur-rev-h">Leave Your Review</h2>
+            <div class="rate-sec">
+                <h2 class="ov-rate-h">Overall Rating</h2>
+                <div class="rating">
+                    <span class="star fa fa-star" data-rating="1"></span>
+                    <span class="star fa fa-star" data-rating="2"></span>
+                    <span class="star fa fa-star" data-rating="3"></span>
+                    <span class="star fa fa-star" data-rating="4"></span>
+                    <span class="star fa fa-star" data-rating="5"></span>
+                    <div id="selectedRating"></div>
+                </div>
+            </div>
+            <div class="all-rev-sec">
+                <h2 class="allrev-h">Write Your Review</h2>
+                <textarea class="allrev-inp"></textarea>
+            </div>
+        </div>
+        <a href="" class="add-review-btn" type="button">Submit Review</a>
     </div>
 </div>
 {% include "footer.html" %}
 {% block scripts %}
     <script src="../static/scripts/product_details.js"></script>
+    <script src="../static/scripts/rating.js"></script>
 {% endblock %}
 

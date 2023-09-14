@@ -31,3 +31,10 @@ class AddProductForm(FlaskForm):
     image = URLField("Image URL", validators=[DataRequired(), URL()], render_kw={"class": "in-field"})
     description = TextAreaField("Description", validators=[DataRequired()], render_kw={"class": "in-field"})
     confirm = SubmitField("Confirm", render_kw={"class": "save"})
+
+
+class ContactForm(FlaskForm):
+    name = StringField("Name", validators=[DataRequired()], render_kw={"class": "in-field"})
+    email = EmailField('Email', validators=[DataRequired(), Email()], render_kw={"class": "in-field"})
+    message = TextAreaField("Description", validators=[DataRequired()], render_kw={"class": "in-field"})
+    send = SubmitField("Send", render_kw={"class": "save"})

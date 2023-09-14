@@ -22,32 +22,40 @@
         <div id="pop" class="pop-background">
             <div id="" class="profile-sec">
                 <a href="#"><i class="fa-solid fa-xmark"></i></a>
-                <form class="profile-form" action="">
+                <form class="profile-form" action="{{ url_for('edit_user', user_id=user.id) }}" method="post">
                     <input
                             class="in-field"
                             type="text"
                             required
                             placeholder="Name"
+                            name="name"
+                            value="{{ user.name }}"
                     />
                     <input
                             class="in-field"
                             type="email"
                             required
                             placeholder="Your email"
-                    />
-                    <input
-                            class="in-field"
-                            type="tel"
-                            required
-                            placeholder="Your mobile number"
+                            name="email"
+                            value="{{ user.email }}"
                     />
                     <input
                             class="in-field"
                             type="text"
                             required
                             placeholder="Your address"
+                            name="address"
+                            value="{{ user.address }}"
                     />
-                    <textarea placeholder="Tell us about yourself"></textarea>
+                    <input
+                            class="in-field"
+                            type="text"
+                            required
+                            placeholder="Name"
+                            name="postal_code"
+                            value="{{ user.postal_code }}"
+                    />
+                    <textarea placeholder="Tell us about yourself" name="about">{{ user.about }}</textarea>
                     <a href=""> <input class="save" type="submit" value="Save"/></a>
                 </form>
             </div>
@@ -71,6 +79,11 @@
             <div class="user-s-data">
                 <h3 class="c1">Address:</h3>
                 <h4 class="c2">{{ user.address }}</h4>
+            </div>
+            <br>
+            <div class="user-s-data">
+                <h3 class="c1">Postal Code:</h3>
+                <h4 class="c2">{{ user.postal_code }}</h4>
             </div>
             <br>
             <div class="user-s-data">
