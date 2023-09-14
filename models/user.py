@@ -26,5 +26,3 @@ class User(BaseModel, Base, UserMixin):
         if name == "password":
             value = generate_password_hash(value, salt_length=8, method='pbkdf2:sha256')
         super().__setattr__(name, value)
-
-

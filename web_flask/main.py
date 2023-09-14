@@ -180,6 +180,7 @@ def add_product():
     else:
         return render_template("add_product.html", form=add_form, logged_in=True)
 
+
 @app.route("/edit_product/<product_id>", methods=["GET", "POST"])
 @login_required
 def edit_product(product_id):

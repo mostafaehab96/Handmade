@@ -10,7 +10,7 @@ orders_products = Table(
     Base.metadata,
     Column("order_id", String(60), ForeignKey("orders.id"), primary_key=True),
     Column("product_id", String(60), ForeignKey("products.id"), primary_key=True)
-    )
+)
 
 
 class Order(BaseModel, Base):

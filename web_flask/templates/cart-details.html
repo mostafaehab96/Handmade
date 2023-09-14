@@ -1,6 +1,6 @@
 {% include "header.html" %}
 {% block styles %}
-<link rel="stylesheet" href="../static/css/header-style.css"/>
+    <link rel="stylesheet" href="../static/css/header-style.css"/>
 {% endblock %}
 {% if products|length %}
     <div class="container add_margin">
@@ -19,7 +19,8 @@
                             <h4 class="p-cart-seller-h"> Seller: <a href=""
                                                                     class="p-cart-s-name">{{ product.user.name }}</a>
                             </h4>
-                            <a href="#" class="p-remove" product_id="{{ product.id }}" product_price="{{ product.price }}"> Remove </a>
+                            <a href="#" class="p-remove" product_id="{{ product.id }}"
+                               product_price="{{ product.price }}"> Remove </a>
                         </div>
                     </div>
                 {% endfor %}
@@ -46,5 +47,5 @@
 {% endif %}
 {% include "footer.html" %}
 {% block scripts %}
-<script src="../static/scripts/cart_details.js"></script>
+    <script src="../static/scripts/cart_details.js"></script>
 {% endblock %}

@@ -51,4 +51,3 @@ class BaseModel:
     def delete(self):
         """Delete current instance"""
         models.storage.delete(self)
-
