@@ -27,6 +27,10 @@ def load_user(user_id):
 @app.route('/', strict_slashes=False)
 def home():
     products = storage.all("Product")
+    if current_user.is_active:
+        user = storage.get("User", current_user.get_id())
+        products = [product for product in products
+                    if product not in user.products]
     logged_in = current_user.is_active
     return render_template("home.html", products=products, logged_in=logged_in)
 
