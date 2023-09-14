@@ -1,13 +1,7 @@
 'use strict'
 const removeButtons = document.querySelectorAll('.p-remove')
-const cartContent = document.querySelectorAll('.side')
-const cartValue = document.querySelector(".badge");
 const total_price = document.querySelector('.p-t-price').childNodes[0]
-let value = cartContent.length;
 let price = Number(total_price.textContent)
-
-
-cartValue.setAttribute('value', value)
 
 
 removeButtons.forEach(function (button) {
@@ -31,3 +25,4 @@ removeButtons.forEach(function (button) {
         }
     })
 })
+

@@ -27,3 +27,23 @@ window.addEventListener("scroll", function () {
         header.classList.remove("active");
     }
 });
+
+//Cart behavior
+
+const cart_home = document.querySelector(".cart");
+const cartValue = document.querySelector(".badge");
+
+
+let productIds = [];
+let value = 0;
+
+$.get('/cart/count', function (data) {
+    productIds = data.product_ids
+    value = Number(data.count)
+    cartValue.setAttribute('value', value)
+})
+
+cart_home.addEventListener("click", function () {
+    window.location.href = '/cart'
+
+});

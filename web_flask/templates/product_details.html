@@ -20,7 +20,11 @@
                     <span class="stars fa fa-star checked"></span>
                     <span class="stars fa fa-star"></span>
                     </span>  </span>
-            <input class="p-det-add" type="button" value="Add To Cart" product_id="{{ product.id }}">
+            {% if editable %}
+                <a href="{{ url_for('edit_product', product_id=product.id) }}" class="p-det-add">Edit Product</a>
+            {% else %}
+                <input class="p-det-add" type="button" value="Add To Cart" product_id="{{ product.id }}">
+            {% endif %}
         </div>
     </div>
 </div>
@@ -48,7 +52,7 @@
         <input class="add-review-btn" type="button" value="Add Review">
     </div>
 </div>
-{% extends "footer.html" %}
+{% include "footer.html" %}
 {% block scripts %}
     <script src="../static/scripts/product_details.js"></script>
 {% endblock %}
