@@ -210,6 +210,12 @@ html {
     padding: 20px;
     margin-bottom: 50px;
     border: 1px solid #abc;
+    width: 70%;
+ }
+ @media (max-width:992px) {
+    .reviews-sec .container .review{
+        width: 90%;
+    }
  }
 
 .reviews-sec .container .review .users-review {
@@ -217,9 +223,7 @@ html {
     display: flex;
     flex-direction:column;
     height: 200px;
-    max-width: 800px;
-    width: 100%;
-}
+  }
 
 
 .reviews-sec .container .review .users-review .user-icon {
@@ -309,12 +313,6 @@ html {
     display: flex;
     flex-direction: column;
     transition-duration: var(--main-transition);
-    /* padding: 20px;
-    background-color: #fdf8f8;
-    border: 1px solid #abc;
-    border-radius: 10px;
-    box-shadow: 0 3px 15px #00000020; */
-
  }
 
 .reviews-sec .container .add-rev-sec .l-ur-rev-h{

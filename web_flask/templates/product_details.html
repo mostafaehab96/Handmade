@@ -14,11 +14,12 @@
             <h3 class="seller-name-h">{{ product.user.name }}</h3>
             <a class="seller-name" href="">Seller Details</a>
             <span class="rate">Rate <span class="star">
+                {% for i in range(rating) %}
                     <span class="stars fa fa-star checked"></span>
-                    <span class="stars fa fa-star checked"></span>
-                    <span class="stars fa fa-star checked"></span>
-                    <span class="stars fa fa-star checked"></span>
+                {% endfor %}
+                {% for i in range(5 - rating) %}
                     <span class="stars fa fa-star"></span>
+                {% endfor %}
                     </span>  </span>
             {% if editable %}
                 <a href="{{ url_for('edit_product', product_id=product.id) }}" class="p-det-add">Edit Product</a>
@@ -39,11 +40,12 @@
                     <i class="user-icon fa-solid fa-user-large"></i>
                     <span class="user-name">{{ review.user.name }}</span>
                     <span class="star">
-                        <span class="stars fa fa-star checked"></span>
-                        <span class="stars fa fa-star checked"></span>
-                        <span class="stars fa fa-star checked"></span>
-                        <span class="stars fa fa-star checked"></span>
-                        <span class="stars fa fa-star"></span>
+                        {% for i in range(review.rating) %}
+                            <span class="stars fa fa-star checked"></span>
+                        {% endfor %}
+                        {% for i in range(5 - review.rating) %}
+                            <span class="stars fa fa-star"></span>
+                        {% endfor %}
                         </span>
                     <p class="review-description">{{ review.text }}</p>
                 </div>
@@ -67,12 +69,12 @@
                 <textarea class="allrev-inp"></textarea>
             </div>
         </div>
-        <a href="" class="add-review-btn" type="button">Submit Review</a>
+        <a class="add-review-btn" type="button" product_id="{{ product.id }}">Submit Review</a>
     </div>
 </div>
 {% include "footer.html" %}
 {% block scripts %}
     <script src="../static/scripts/product_details.js"></script>
-    <script src="../static/scripts/rating.js"></script>
+    <script src="../static/scripts/review.js"></script>
 {% endblock %}
 

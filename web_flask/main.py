@@ -7,6 +7,7 @@ from forms import SignupForm, LoginFrom, AddProductForm, ContactForm
 from models.user import User
 from models.cart import Cart
 from models.order import Order
+from models.review import Review
 import smtplib
 
 app = Flask(__name__)
@@ -26,6 +27,14 @@ def load_user(user_id):
     return storage.get("User", user_id)
 
 
+@app.route("/status")
+def status():
+    if current_user.is_active:
+        return jsonify({"status": "ok"})
+    else:
+        return jsonify({"status": "login"})
+
+
 @app.route('/', strict_slashes=False)
 def home():
     products = storage.all("Product")
@@ -41,10 +50,12 @@ def home():
 def show_product(product_id):
     product = storage.get("Product", product_id)
     editable = current_user.is_active and product in current_user.products
+    rating = round(sum([review.rating for review in product.reviews]) / (len(product.reviews)))
     return render_template('product_details.html',
                            product=product,
                            logged_in=current_user.is_active,
-                           editable=editable
+                           editable=editable,
+                           rating=rating
                            )
 
 
@@ -217,7 +228,8 @@ def edit_user(user_id):
     return redirect(url_for('account'))
 
 
-@app.route("/checkout", methods=["GET", "POST"])
+@app.route("/checkout")
+@login_required
 def checkout():
     if current_user.is_active:
         user = storage.get("User", current_user.get_id())
@@ -241,6 +253,21 @@ def checkout():
 def view_orders():
     user = storage.get("User", current_user.get_id())
     return render_template("orders.html", orders=user.orders, logged_in=current_user.is_active)
+
+
+@app.route("/add_review", methods=["POST"])
+@login_required
+def add_review():
+    rating = int(request.form.get('rating'))
+    text = request.form.get('text')
+    product_id = request.form.get('product_id')
+    review = Review(text=text,
+                    rating=rating,
+                    user_id=current_user.get_id(),
+                    product_id=product_id)
+
+    review.save()
+    return jsonify({"rating": rating, "text": text, "product_id": product_id})
 
 
 @app.route("/about")
