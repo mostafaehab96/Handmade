@@ -16,7 +16,7 @@ import os
 class DBStorage:
     __engine = None
     __session = None
-    __db_uri = os.getenv('DB_URI')
+    __db_uri = os.getenv('DB_URI', 'mysql+mysqldb://handmade_dev:0000@localhost/handmade_db')
     __classes = {"User": User, "Product": Product, "Order": Order,
                  "Review": Review, "Category": Category, "Cart": Cart
                  }
