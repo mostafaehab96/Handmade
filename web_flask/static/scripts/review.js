@@ -4,7 +4,7 @@ const ratingContainer = document.querySelector(".rating");
 const stars = ratingContainer.querySelectorAll(".star");
 const addReview = document.querySelector(".add-review-btn")
 const reviewText = document.querySelector(".allrev-inp")
-let rating = 0
+let rating = 1
 let selectedStarIndex = -1;
 
 stars.forEach((star, index) => {

@@ -6,7 +6,7 @@
 
 
 {% from "_formhelpers.html" import render_field %}
-<div class="container add_margin">
+<div class="container">
     <h1 class="ur-cart-h">SignUp</h1>
 </div>
 {% with messages=get_flashed_messages() %}
@@ -17,7 +17,7 @@
     {% endif %}
 {% endwith %}
 <div class="user-sec">
-    <div class="container add_margin">
+    <div class="container">
         <div class="profile-sec">
             <form class="profile-form" method="post" novalidate>
                 {{ form.csrf_token }}
