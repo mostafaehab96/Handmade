@@ -10,19 +10,19 @@ from models.order import Order
 from models.review import Review
 from models.category import Category
 from models.cart import Cart
+import os
 
 
 class DBStorage:
     __engine = None
     __session = None
+    __db_uri = os.getenv('DB_URI')
     __classes = {"User": User, "Product": Product, "Order": Order,
                  "Review": Review, "Category": Category, "Cart": Cart
                  }
 
     def __init__(self):
-        self.__engine = create_engine(
-            "mysql+mysqldb://handmade_dev:0000@localhost/handmade_db"
-        )
+        self.__engine = create_engine(self.__db_uri)
 
     def reload(self):
         """reloads data from the database"""

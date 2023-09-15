@@ -3,15 +3,16 @@ from models import storage
 from werkzeug.security import check_password_hash
 from flask_login import LoginManager, login_user, logout_user, current_user, login_required
 from models.product import Product
-from forms import SignupForm, LoginFrom, AddProductForm, ContactForm
 from models.user import User
 from models.cart import Cart
 from models.order import Order
 from models.review import Review
+from web_flask.forms import SignupForm, LoginFrom, AddProductForm, ContactForm
 import smtplib
+import os
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
+app.config['SECRET_KEY'] = os.getenv('FLASK_KEY')
 login_manager = LoginManager()
 login_manager.init_app(app)
 
@@ -296,9 +297,10 @@ def contact():
 def send_message(name, email, message):
     with smtplib.SMTP('smtp.gmail.com', port=587) as connection:
         connection.starttls()
-        my_email = 'mostafa96ehab@gmail.com'
+        my_email = os.getenv('MY_EMAIL')
+        app_passwd = os.getenv('APP_PASSWD')
         all_message = f"Sender:{name}\nemail:{email}\nmessage:{message}"
-        connection.login(user=my_email, password="bnrafnqyepmvvftl")
+        connection.login(user=my_email, password=app_passwd)
         connection.sendmail(from_addr=my_email, to_addrs=my_email,
                             msg=f"Subject:New Handmade message\n\n {all_message}")
 
