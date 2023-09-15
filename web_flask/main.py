@@ -50,7 +50,7 @@ def home():
 def show_product(product_id):
     product = storage.get("Product", product_id)
     editable = current_user.is_active and product in current_user.products
-    rating = round(sum([review.rating for review in product.reviews]) / (len(product.reviews)))
+    rating = round(sum([review.rating for review in product.reviews]) / (len(product.reviews) + 1))
     return render_template('product_details.html',
                            product=product,
                            logged_in=current_user.is_active,
@@ -209,7 +209,7 @@ def edit_product(product_id):
         product.description = edit_form.description.data
         product.save()
         return redirect(url_for('account'))
-    return render_template("add_product.html", logged_in=True, form=edit_form)
+    return render_template("add_product.html", logged_in=True, form=edit_form, editing=True)
 
 
 @app.route("/edit_user/<user_id>", methods=["POST"])
