@@ -8,14 +8,13 @@ from models.cart import Cart
 from models import storage
 import random
 
+
 fake = Faker()
 
-with open("test_images.txt", "r") as file:
-    images = file.readlines()
 
 
 def create_users():
-    for _ in range(10):
+    for _ in range(15):
         user = User(
             name=fake.name(),
             email=fake.email(),
@@ -29,6 +28,8 @@ def create_users():
 
 
 def create_products():
+    with open("test_data/test_images.txt", "r") as file:
+        images = file.readlines()
     users = storage.all("User")
     count = 0
     for user in users:
@@ -67,7 +68,7 @@ def create_reviews():
             text=fake.text(),
             user_id=user.id,
             product_id=product.id,
-            rating=random.randint(1, 6)
+            rating=random.randint(1, 5)
         )
 
         review.save()

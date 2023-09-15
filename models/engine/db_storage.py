@@ -22,7 +22,15 @@ class DBStorage:
                  }
 
     def __init__(self):
-        self.__engine = create_engine(self.__db_uri)
+        self.__engine = create_engine(self.__db_uri,
+                                      pool_pre_ping=True,
+                                      connect_args={
+                                          "keepalives": 1,
+                                          "keepalives_idle": 30,
+                                          "keepalives_interval": 10,
+                                          "keepalives_count": 5,
+                                      }
+                                      )
 
     def reload(self):
         """reloads data from the database"""
