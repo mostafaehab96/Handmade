@@ -200,6 +200,7 @@ def edit_product(product_id):
         return redirect(url_for('account'))
     return render_template("add_product.html", logged_in=True, form=edit_form)
 
+
 @app.route("/edit_user/<user_id>", methods=["POST"])
 @login_required
 def edit_user(user_id):
@@ -215,24 +216,24 @@ def edit_user(user_id):
     user.save()
     return redirect(url_for('account'))
 
+
 @app.route("/checkout", methods=["GET", "POST"])
-@login_required
 def checkout():
-    user = storage.get("User", current_user.get_id())
-    products = user.cart.products
-    total_price = sum([product.price for product in products])
-    order = Order(address=user.address,
-                  total_price=total_price,
-                  user_id=user.id
-                  )
-    order.products = products
-    order.save()
-    user.cart.products = []
-    storage.save()
-
-    return redirect(url_for('view_orders'))
-
-
+    if current_user.is_active:
+        user = storage.get("User", current_user.get_id())
+        products = user.cart.products
+        total_price = sum([product.price for product in products])
+        order = Order(address=user.address,
+                      total_price=total_price,
+                      user_id=user.id
+                      )
+        order.products = products
+        order.save()
+        user.cart.products = []
+        storage.save()
+        return jsonify({"status": "ok", "order_id": order.id})
+    else:
+        return jsonify({"status": 403}), 403
 
 
 @app.route("/orders")
