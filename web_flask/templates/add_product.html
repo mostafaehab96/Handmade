@@ -32,7 +32,9 @@
                 {{ render_field(form.description) }}
                 <div class="edit_btns">
                     {{ form.confirm }}
-                    {{ form.delete }}
+                    {% if editing %}
+                        {{ form.delete }}
+                    {% endif %}
                 </div>
             </form>
         </div>

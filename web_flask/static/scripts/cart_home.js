@@ -11,7 +11,9 @@ document.addEventListener("click", function (event) {
                     productIds.push(productId);
                     value += 1;
                     cartValue.setAttribute('value', value)
-                    swal({title: "Product added!"});
+                    swal({title: "Product added!", icon: "success"});
+                } else {
+                    swal({title: "Product already added!"})
                 }
             }
         })
