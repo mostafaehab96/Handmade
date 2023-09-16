@@ -8,9 +8,9 @@
 {% from "_formhelpers.html" import render_field %}
 <div class="container">
     {% if editing %}
-    <h1 class="ur-cart-h">Edit Product</h1>
+        <h1 class="ur-cart-h">Edit Product</h1>
     {% else %}
-    <h1 class="ur-cart-h">Add Product</h1>
+        <h1 class="ur-cart-h">Add Product</h1>
     {% endif %}
 </div>
 {% with messages=get_flashed_messages() %}
@@ -30,7 +30,10 @@
                 {{ render_field(form.price) }}
                 {{ render_field(form.image) }}
                 {{ render_field(form.description) }}
-                {{ form.confirm }}
+                <div class="edit_btns">
+                    {{ form.confirm }}
+                    {{ form.delete }}
+                </div>
             </form>
         </div>
     </div>

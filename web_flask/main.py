@@ -205,11 +205,15 @@ def edit_product(product_id):
                                image=product.image,
                                description=product.description)
     if edit_form.validate_on_submit():
-        product.name = edit_form.name.data
-        product.price = edit_form.price.data
-        product.image = edit_form.image.data
-        product.description = edit_form.description.data
-        product.save()
+        if "delete" in request.form:
+            storage.delete(product)
+            storage.save()
+        else:
+            product.name = edit_form.name.data
+            product.price = edit_form.price.data
+            product.image = edit_form.image.data
+            product.description = edit_form.description.data
+            product.save()
         return redirect(url_for('account'))
     return render_template("add_product.html", logged_in=True, form=edit_form, editing=True)
 
@@ -222,10 +226,12 @@ def edit_user(user_id):
     email = request.form['email']
     address = request.form['address']
     postal_code = request.form['postal_code']
+    about = request.form['about']
     user.name = name
     user.email = email
     user.address = address
     user.postal_code = postal_code
+    user.about = about
     user.save()
     return redirect(url_for('account'))
 

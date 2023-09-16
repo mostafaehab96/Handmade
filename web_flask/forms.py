@@ -31,6 +31,7 @@ class AddProductForm(FlaskForm):
     image = URLField("Image URL", validators=[DataRequired(), URL()], render_kw={"class": "in-field"})
     description = TextAreaField("Description", validators=[DataRequired()], render_kw={"class": "in-field"})
     confirm = SubmitField("Confirm", render_kw={"class": "save"})
+    delete = SubmitField("Delete", render_kw={"class": "delete"})
 
 
 class ContactForm(FlaskForm):

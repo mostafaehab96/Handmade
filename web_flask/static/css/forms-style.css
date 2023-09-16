@@ -1,147 +1,180 @@
 .user-sec .container {
-  display: flex;
-  flex-direction: column;
-  position: relative;
+    display: flex;
+    flex-direction: column;
+    position: relative;
 }
 
 .user-sec .container .profile-sec {
-  width: 50%;
-  background-color: #f9fefd;
-  padding: 30px;
-  border: 1px solid #abc;
-  border-radius: 10px;
-  box-shadow: 0 3px 15px #00000018;
+    width: 50%;
+    background-color: #f9fefd;
+    padding: 30px;
+    border: 1px solid #abc;
+    border-radius: 10px;
+    box-shadow: 0 3px 15px #00000018;
 }
+
 @media (max-width: 992px) {
-  .user-sec .container .profile-sec {
-    width: 60%;
-  }
+    .user-sec .container .profile-sec {
+        width: 60%;
+    }
 }
+
 @media (max-width: 767px) {
-  .user-sec .container .profile-sec {
-    width: 90%;
-    padding: 10px;
-  }
+    .user-sec .container .profile-sec {
+        width: 90%;
+        padding: 10px;
+    }
 }
 
 .user-sec .container .pop-background {
-  visibility: hidden;
-  opacity: 0;
-  z-index: 1;
-  position: fixed;
-  background-color: #00000056;
-  transition: all 0.4s ease-in-out;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+    visibility: hidden;
+    opacity: 0;
+    z-index: 1;
+    position: fixed;
+    background-color: #00000056;
+    transition: all 0.4s ease-in-out;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
 }
+
 /* ///////////////////////////////////////////////// */
 .user-sec .container .pop-background:target {
-  visibility: visible;
-  opacity: 1;
+    visibility: visible;
+    opacity: 1;
 }
+
 /* //////////////////////////////////////////////// */
 .user-sec .container .profile-sec > a > i {
-  position: absolute;
-  right: -5px;
-  top: -19px;
-  font-size: 37px;
-  color: black;
-  cursor: pointer;
-  transition-duration: var(--main-transition);
+    position: absolute;
+    right: -5px;
+    top: -19px;
+    font-size: 37px;
+    color: black;
+    cursor: pointer;
+    transition-duration: var(--main-transition);
 }
 
 .user-sec .container .profile-sec > a > i:hover {
-  color: #f20505;
+    color: #f20505;
 }
 
 .user-sec .container .profile-sec .profile-form .in-field,
 textarea {
-  width: 100%;
-  padding: 12px 18px;
-  display: inline-block;
-  margin-bottom: 15px;
-  margin-top: 7px;
-  outline: none;
-  border-radius: 5px;
-  border: 1px solid #abc !important;
+    width: 100%;
+    padding: 12px 18px;
+    display: inline-block;
+    margin-bottom: 15px;
+    margin-top: 7px;
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid #abc !important;
 }
 
 .user-sec .container .profile-sec .profile-form .in-field:hover {
-  box-shadow: 0 3px 15px #00000020;
+    box-shadow: 0 3px 15px #00000020;
 }
+
 .user-sec .container .profile-sec .profile-form textarea:hover {
-  box-shadow: 0 3px 15px #00000020;
+    box-shadow: 0 3px 15px #00000020;
 }
+
 .user-sec .container .profile-sec .profile-form .in-field:focus {
-  border-width: 2px;
+    border-width: 2px;
 }
+
 .user-sec .container .profile-sec .profile-form textarea:focus {
-  border-width: 2px;
+    border-width: 2px;
 }
 
 .user-sec .container .profile-sec .profile-form > textarea {
-  height: 90px;
-  width: 100%;
-  resize: none;
-  overflow-y: auto;
+    height: 90px;
+    width: 100%;
+    resize: none;
+    overflow-y: auto;
 }
 
 .user-sec .container .profile-sec .profile-form .save {
-  margin-top: 15px;
-  padding: 15px 20px;
-  color: white;
-  background-color: #485460e9;
-  outline: none;
-  border: 0;
-  font-size: 1.2em;
-  font-weight: 650;
-  border-radius: 5px;
-  cursor: pointer;
-  transition-duration: var(--main-transition);
+    margin-top: 15px;
+    padding: 15px 20px;
+    color: white;
+    background-color: #485460e9;
+    outline: none;
+    border: 0;
+    font-size: 1.2em;
+    font-weight: 650;
+    border-radius: 5px;
+    cursor: pointer;
+    transition-duration: var(--main-transition);
 }
 
 .user-sec .container .profile-sec .profile-form .save:hover {
-  background-color: var(--m-color);
+    background-color: var(--m-color);
 }
 
 .user-sec .container .profile-sec .profile-form > textarea::-webkit-scrollbar {
-  width: 8px;
-  background-color: #ddd;
-}
-.user-sec
-  .container
-  .profile-sec
-  .profile-form
-  > textarea::-webkit-scrollbar-track {
-  background-color: #ddd;
-  -webkit-box-shadow: inset 0 0 6px #0000004d;
+    width: 8px;
+    background-color: #ddd;
 }
 
 .user-sec
-  .container
-  .profile-sec
-  .profile-form
-  > textarea::-webkit-scrollbar-thumb {
-  background-color: #7393a2;
-  -webkit-box-shadow: inset 0 0 6px #0000004d;
+.container
+.profile-sec
+.profile-form
+> textarea::-webkit-scrollbar-track {
+    background-color: #ddd;
+    -webkit-box-shadow: inset 0 0 6px #0000004d;
+}
+
+.user-sec
+.container
+.profile-sec
+.profile-form
+> textarea::-webkit-scrollbar-thumb {
+    background-color: #7393a2;
+    -webkit-box-shadow: inset 0 0 6px #0000004d;
 }
 
 .user-sec .container .profile-sec .profile-form label {
-  display: block;
-  font-size: 1.1em;
-  font-weight: 510;
-  color: #2e363e;
+    display: block;
+    font-size: 1.1em;
+    font-weight: 510;
+    color: #2e363e;
 }
 
 .errors {
-  color: red;
-  margin: 0;
-  padding-left: 20px;
-  font-size: x-small;
+    color: red;
+    margin: 0;
+    padding-left: 20px;
+    font-size: x-small;
 }
+
 .flash {
-  color: #ee6f57;
-  text-align: center;
+    color: #ee6f57;
+    text-align: center;
+}
+
+.edit_btns {
+    display: flex;
+    justify-content: space-between;
+}
+
+.delete {
+    margin-top: 15px;
+    padding: 15px 20px;
+    color: #ff0000d7;
+    background-color: var(--onhover);
+    outline: none;
+    border: 0;
+    font-size: 1.2em;
+    font-weight: 650;
+    border-radius: 5px;
+    cursor: pointer;
+    transition-duration: var(--main-transition);
+    border: 1px solid #9fb0c2;
+}
+
+.delete:hover {
+    background-color: #dbdee3;
 }
