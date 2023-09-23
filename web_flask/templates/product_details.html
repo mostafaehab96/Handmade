@@ -5,7 +5,7 @@
 {% endblock %}
 <div class="p-details">
     <div class="container">
-        <img src="{{ product.image }}" alt="">
+        <img src="{{ product.image }}">
         <div class="p-det-info">
             <h2 class="p-det-name">{{ product.name }}</h2>
             <h3 class="p-det-h">Description</h3>
@@ -21,7 +21,8 @@
                 {% endfor %}
                     </span>  </span>
             {% if editable %}
-                <a href="{{ url_for('edit_product', product_id=product.id) }}" class="p-det-add">Edit Product</a>
+                <a href="{{ url_for('app_views.edit_product', product_id=product.id) }}" class="p-det-add">Edit
+                    Product</a>
             {% else %}
                 <input class="p-det-add" type="button" value="Add To Cart" product_id="{{ product.id }}">
             {% endif %}

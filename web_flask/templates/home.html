@@ -22,9 +22,8 @@
     <div class="container list">
         {% for product in products %}
             <div class="p-card-container item">
-                <a href="{{ url_for('show_product', product_id=product.id) }}">
+                <a href="{{ url_for('app_views.show_product', product_id=product.id) }}">
                     <img src="{{ product.image }}" alt="product image">
-
                     <div class="product-info">
                         <h3 class="Product-name">{{ product.name }}</h3>
                         <p class="Product-description">{{ product.description }}</p>

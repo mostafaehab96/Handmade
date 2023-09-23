@@ -24,7 +24,7 @@
 <body>
 <header class="header" id="header">
     <div class="container">
-        <a href="" class="logo"
+        <a href="{{ url_for('home') }}" class="logo"
         ><i class="shop fa-solid fa-shop fa-2x"></i>HandMade</a
         >
         <div class="navbar">
@@ -33,10 +33,10 @@
                 <li><a class="h-links" href="{{ url_for('about') }}">About</a></li>
                 <li><a class="h-links" href="{{ url_for('contact') }}">Contact</a></li>
                 {% if logged_in %}
-                    <li><a class="h-links" href="{{ url_for('account') }}">Account</a></li>
-                    <li><a class="log" href="{{ url_for('logout') }}">Logout</a></li>
+                    <li><a class="h-links" href="{{ url_for('app_views.account') }}">Account</a></li>
+                    <li><a class="log" href="{{ url_for('app_views.logout') }}">Logout</a></li>
                 {% else %}
-                    <li><a class="log" href="{{ url_for('login') }}">Login</a></li>
+                    <li><a class="log" href="{{ url_for('app_views.login') }}">Login</a></li>
                 {% endif %}
             </ul>
             <div class="tog-btn">
@@ -51,10 +51,10 @@
             <li><a class="h-links" href="{{ url_for('about') }}">About</a></li>
             <li><a class="h-links" href="{{ url_for('contact') }}">Contact</a></li>
             {% if logged_in %}
-                <li><a class="h-links" href="{{ url_for('account') }}">Account</a></li>
-                <li><a class="log" href="{{ url_for('logout') }}">Logout</a></li>
+                <li><a class="h-links" href="{{ url_for('app_views.account') }}">Account</a></li>
+                <li><a class="log" href="{{ url_for('app_views.logout') }}">Logout</a></li>
             {% else %}
-                <li><a class="log" href="{{ url_for('login') }}">Login</a></li>
+                <li><a class="log" href="{{ url_for('app_views.login') }}">Login</a></li>
             {% endif %}
         </div>
     </div>
