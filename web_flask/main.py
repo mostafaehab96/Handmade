@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, url_for, flash, jsonify, request
+from flask import Flask, render_template, redirect, url_for, flash, jsonify
 from models import storage
 from flask_login import LoginManager, current_user
 from web_flask.forms import ContactForm
