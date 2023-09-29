@@ -82,6 +82,12 @@ The project is organized into the following directories and files:
 | [orders.py](https://github.com/mostafaehab96/Handmade/blob/master/web_flask/views/orders.py)     | Contains routes that handles all order functionality                              |
 | [products.py](https://github.com/mostafaehab96/Handmade/blob/master/web_flask/views/products.py) | Contains routes that handles all product and reviews functionality                |
 
+## Preview 
+Here's a link to the website deployed with herokuapp [Handmade](https://handmade-2959c250dd19.herokuapp.com/)
+![Imgur](https://i.imgur.com/03LTlu5.png)
+![Imgur](https://i.imgur.com/2vLakmV.png)
+![Imgur](https://i.imgur.com/wYb1RMK.png)
+![Imgur](https://i.imgur.com/PlNTQZW.png)
 ## Contribution
 
 My dear friend [Islam Gamel](https://github.com/IslamMGM) helped me in all frontend! He made all html, css files and
