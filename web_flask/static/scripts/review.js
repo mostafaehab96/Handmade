@@ -40,7 +40,17 @@ function resetStars() {
 addReview.addEventListener("click", function () {
     $.get("/status", function (data) {
         if (data['status'] === 'login') {
-            swal({title: "Login First!"})
+            swal({
+                title: "Login First!",
+                closeOnClickOutside: true,
+                buttons: {
+                    cancel: true,
+                    confirm: true
+                }
+            }).then((result) => {
+                if (result) window.location.href = "/login"
+                console.log(result)
+            });
         } else {
             const productId = addReview.getAttribute("product_id")
             const review = {

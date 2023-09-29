@@ -39,7 +39,17 @@ checkoutButton.addEventListener("click", function () {
                 window.location.href = "/";
             }, 3000);
         } else {
-            swal({title: "Login First"})
+            swal({
+                title: "Login First!",
+                closeOnClickOutside: true,
+                buttons: {
+                    cancel: true,
+                    confirm: true
+                }
+            }).then((result) => {
+                if (result) window.location.href = "/login"
+                console.log(result)
+            });
         }
     })
 })

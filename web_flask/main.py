@@ -58,12 +58,13 @@ def contact():
         try:
             send_message(name, email, message)
             return redirect(url_for('home'))
-        except Exception as error:
-            print(error)
+        except:
             flash("Some Error Happened! Message wasn't sent")
             return redirect(url_for('contact'))
 
-    return render_template("contact.html", form=contact_form, logged_in=current_user.is_active)
+    return render_template("contact.html",
+                           form=contact_form,
+                           logged_in=current_user.is_active)
 
 
 def send_message(name, email, message):
