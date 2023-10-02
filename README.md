@@ -6,12 +6,12 @@ overview of its functionality.
 
 ## Table of Contents
 
-- [Story](#Story)
+- [Story](#story)
 - [Project Overview](#project-overview)
 - [Project Structure](#project-structure)
-- [Getting Started](#getting-started)
-- [Contributing](#contributing)
-- [License](#license)
+- [Files Structure](#some-files-structure)
+- [Preview](#preview-)
+- [Contributing](#contribution)
 
 ## Story
 

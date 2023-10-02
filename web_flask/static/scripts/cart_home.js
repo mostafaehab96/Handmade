@@ -8,13 +8,12 @@ document.addEventListener("click", function (event) {
                 swal({
                     title: "Login First!",
                     closeOnClickOutside: true,
-                    buttons:{
+                    buttons: {
                         cancel: true,
                         confirm: true
                     }
                 }).then((result) => {
                     if (result) window.location.href = "/login"
-                    console.log(result)
                 });
             } else {
                 if (!productIds.includes(productId)) {
@@ -22,6 +21,7 @@ document.addEventListener("click", function (event) {
                     value += 1;
                     cartValue.setAttribute('value', value)
                     swal({title: "Product added!", icon: "success"});
+                    event.target.textContent = ' Added !'
                 } else {
                     swal({title: "Product already added!"})
                 }

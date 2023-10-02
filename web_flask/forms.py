@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, EmailField, PasswordField, TextAreaField, FloatField, URLField
-from wtforms.validators import DataRequired, URL, Email, EqualTo
+from wtforms.validators import DataRequired, URL, Email, EqualTo, Length
 
 
 class SignupForm(FlaskForm):
@@ -26,7 +26,7 @@ class LoginFrom(FlaskForm):
 
 
 class AddProductForm(FlaskForm):
-    name = StringField("Product Name", validators=[DataRequired()], render_kw={"class": "in-field"})
+    name = StringField("Product Name", validators=[DataRequired(), Length(max=15)], render_kw={"class": "in-field"})
     price = FloatField("Price", validators=[DataRequired()], render_kw={"class": "in-field"})
     image = URLField("Image URL", validators=[DataRequired(), URL()], render_kw={"class": "in-field"})
     description = TextAreaField("Description", validators=[DataRequired()], render_kw={"class": "in-field"})

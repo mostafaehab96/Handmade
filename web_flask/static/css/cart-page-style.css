@@ -110,6 +110,8 @@ html {
     font-size: 1.4rem;
     font-weight: 650;
     color: #16355a;
+    overflow-wrap: break-word;
+    word-break: break-all;
 }
 
 .carts-side .container .side .p-cart-info .p-cart-price {

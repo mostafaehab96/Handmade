@@ -32,7 +32,8 @@ window.addEventListener("scroll", function () {
 
 const cart_home = document.querySelector(".cart");
 const cartValue = document.querySelector(".badge");
-
+const addButtons = document.querySelectorAll('.p-card-add')
+const addButton = document.querySelector("input.p-det-add")
 
 let productIds = [];
 let value = 0;
@@ -41,6 +42,17 @@ $.get('/cart/count', function (data) {
     productIds = data.product_ids
     value = Number(data.count)
     cartValue.setAttribute('value', value)
+    if (addButton !== null) {
+        const productId = addButton.getAttribute("product_id")
+        if (productIds.includes(productId)) {
+            addButton.setAttribute("value", " Added! ")
+            addButton.disabled = true;
+        }
+    }
+    addButtons.forEach((button) => {
+        const id = button.getAttribute("product_id")
+        if (productIds.includes(id)) button.textContent = " Added! "
+    })
 })
 
 cart_home.addEventListener("click", function () {

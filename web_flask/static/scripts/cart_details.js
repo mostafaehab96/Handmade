@@ -33,11 +33,17 @@ checkoutButton.addEventListener("click", function () {
             swal({
                 title: 'Order was added',
                 text: `ID: ${data['order_id']}`,
-                icon: 'success'
-            })
-            setTimeout(function () {
-                window.location.href = "/";
-            }, 3000);
+                icon: 'success',
+                closeOnClickOutside: true,
+                buttons: {
+                    home: true,
+                    orders: true
+                }
+            }).then((result) => {
+                if (result === 'orders') window.location.href = "/orders"
+                else window.location.href = "/"
+
+            });
         } else {
             swal({
                 title: "Login First!",
