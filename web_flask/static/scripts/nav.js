@@ -38,9 +38,7 @@ const addButton = document.querySelector("input.p-det-add")
 let productIds = [];
 let value = 0;
 
-$.get('/cart/count', function (data) {
-    productIds = data.product_ids
-    value = Number(data.count)
+function updateUI() {
     cartValue.setAttribute('value', value)
     if (addButton !== null) {
         const productId = addButton.getAttribute("product_id")
@@ -53,9 +51,22 @@ $.get('/cart/count', function (data) {
         const id = button.getAttribute("product_id")
         if (productIds.includes(id)) button.textContent = " Added! "
     })
-})
+}
+
+function get_update() {
+    $.get('/cart/count', function (data) {
+        productIds = data.product_ids
+        value = Number(data.count)
+        updateUI()
+    })
+}
+
+get_update()
+
 
 cart_home.addEventListener("click", function () {
     window.location.href = '/cart'
 
 });
+
+

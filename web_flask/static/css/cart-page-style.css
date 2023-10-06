@@ -141,6 +141,7 @@ html {
     font-weight: 700;
     margin-top: 10px;
     color: #ff0000d7;
+    cursor: pointer;
 }
 
 .carts-side .container .p-cart-check {
@@ -150,7 +151,6 @@ html {
     margin-left: 20px;
     display: flex;
     flex-direction: column;
-    height: 550px;
     box-shadow: 0 3px 16px #00000017;
     border-radius: 10px;
     background-color: #f4fffe53;

@@ -15,12 +15,13 @@ removeButtons.forEach(function (button) {
         price -= product_price
         total_price.textContent = price
         cartValue.setAttribute('value', value)
-
-        $.get(`/cart/remove/${product_id}`, function (data) {
-            if (data.status === "ok") {
-                swal({title: "Product Removed"});
-            }
-        })
+        fetch(`/cart/remove/${product_id}`)
+            .then((response) => {
+                if (response.status === 200) {
+                    swal({title: "Product Removed"})
+                    get_update()
+                }
+            })
         if (value === 0) {
             window.location.href = '/'
         }

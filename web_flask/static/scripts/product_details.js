@@ -1,5 +1,3 @@
-
-
 if (addButton !== null) {
     addButton.addEventListener("click", function () {
         const productId = addButton.getAttribute("product_id")
@@ -21,7 +19,9 @@ if (addButton !== null) {
                     productIds.push(productId);
                     value += 1;
                     cartValue.setAttribute('value', value)
-                    swal({title: "Product added!", icon: "success"});
+                    swal({title: "Product added!", icon: "success"}).then((result) => {
+                        get_update()
+                    })
                     addButton.setAttribute("value", "Added!")
                     addButton.disabled = true;
                 } else {
