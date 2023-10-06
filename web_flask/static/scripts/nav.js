@@ -74,4 +74,11 @@ cart_home.addEventListener("click", function () {
 
 });
 
+window.addEventListener("pageshow", function (event) {
+    const [entry] = performance.getEntriesByType("navigation");
+    if (entry.type === "back_forward") {
+        if (window.location.pathname === '/cart') location.reload();
+    }
+});
+
 
