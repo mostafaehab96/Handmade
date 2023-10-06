@@ -1,7 +1,9 @@
 if (addButton !== null) {
     addButton.addEventListener("click", function () {
         const productId = addButton.getAttribute("product_id")
-        $.get(`/add_cart/${productId}`, function (data) {
+        fetch(`/add_cart/${productId}`).then((response) => {
+            if (response.ok) return response.json()
+        }).then((data) => {
             if (data.status === "Login") {
                 swal({
                     title: "Login First!",
@@ -29,6 +31,5 @@ if (addButton !== null) {
                 }
             }
         })
-
     })
 }

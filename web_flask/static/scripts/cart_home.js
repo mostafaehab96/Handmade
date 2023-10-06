@@ -3,7 +3,9 @@
 document.addEventListener("click", function (event) {
     if (event.target.classList.contains("p-card-add")) {
         const productId = event.target.getAttribute('product_id')
-        $.get(`/add_cart/${productId}`, function (data) {
+        fetch(`/add_cart/${productId}`).then((response) => {
+            if (response.ok) return response.json()
+        }).then((data) => {
             if (data.status === "Login") {
                 swal({
                     title: "Login First!",

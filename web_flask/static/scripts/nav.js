@@ -54,8 +54,13 @@ function updateUI() {
 }
 
 function get_update() {
-    $.get('/cart/count', function (data) {
-        productIds = data.product_ids
+    fetch('/cart/count').then((response) => {
+        if (response.ok) {
+            return response.json()
+        }
+    }).then((data) => {
+        if (data.product_ids !== undefined) productIds = data.product_ids
+        else productIds = []
         value = Number(data.count)
         updateUI()
     })

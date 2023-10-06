@@ -29,7 +29,9 @@ removeButtons.forEach(function (button) {
 })
 
 checkoutButton.addEventListener("click", function () {
-    $.get('/checkout', function (data) {
+    fetch('/checkout').then((response) => {
+        if (response.ok) return response.json()
+    }).then((data) => {
         if (data['status'] === "ok") {
             swal({
                 title: 'Order was added',
