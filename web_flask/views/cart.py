@@ -1,5 +1,5 @@
 from web_flask.views import app_views
-from flask import render_template, jsonify
+from flask import render_template, jsonify, make_response
 from flask_login import login_required, current_user
 from models import storage
 
@@ -35,10 +35,15 @@ def cart():
         user = storage.get("User", current_user.get_id())
         selected_products = user.cart.products
         total_price = sum([product.price for product in selected_products])
-    return render_template("cart-details.html",
-                           products=selected_products,
-                           price=total_price,
-                           logged_in=current_user.is_active)
+
+    response = make_response(render_template("cart-details.html",
+                                             products=selected_products,
+                                             price=total_price,
+                                             logged_in=current_user.is_active))
+    response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
+    response.headers["Pragma"] = "no-cache"
+    response.headers["Expires"] = "0"
+    return response
 
 
 @app_views.route('/cart/remove/<product_id>')
