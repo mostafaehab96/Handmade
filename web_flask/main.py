@@ -1,4 +1,5 @@
-from flask import Flask, render_template, redirect, url_for, flash, jsonify
+from flask import Flask, render_template, redirect, url_for, flash, jsonify, \
+    make_response
 from models import storage
 from flask_login import LoginManager, current_user
 from web_flask.forms import ContactForm
@@ -40,7 +41,12 @@ def home():
         products = [product for product in products
                     if product not in user.products]
     logged_in = current_user.is_active
-    return render_template("home.html", products=products, logged_in=logged_in)
+    response = make_response(render_template("home.html", products=products,
+                                             logged_in=logged_in))
+    response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
+    response.headers["Pragma"] = "no-cache"
+    response.headers["Expires"] = "0"
+    return response
 
 
 @app.route("/about")
@@ -75,7 +81,8 @@ def send_message(name, email, message):
         all_message = f"Sender:{name}\nemail:{email}\nmessage:{message}"
         connection.login(user=my_email, password=app_passwd)
         connection.sendmail(from_addr=my_email, to_addrs=my_email,
-                            msg=f"Subject:New Handmade message\n\n {all_message}")
+                            msg=f"Subject:New Handmade message\n\n "
+                                f"{all_message}")
 
 
 if __name__ == "__main__":

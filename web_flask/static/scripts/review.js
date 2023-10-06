@@ -68,35 +68,6 @@ addReview.addEventListener("click", function () {
             })
         }
     })
-    // $.get("/status", function (data) {
-    //     if (data['status'] === 'login') {
-    //         swal({
-    //             title: "Login First!",
-    //             closeOnClickOutside: true,
-    //             buttons: {
-    //                 cancel: true,
-    //                 confirm: true
-    //             }
-    //         }).then((result) => {
-    //             if (result) window.location.href = "/login"
-    //             console.log(result)
-    //         });
-    //     } else {
-    //         const productId = addReview.getAttribute("product_id")
-    //         const review = {
-    //             rating: rating,
-    //             text: reviewText.value,
-    //             product_id: productId
-    //         }
-    //         $.post("/add_review", review, function (data) {
-    //             swal({title: "Review Added", icon: "success"})
-    //             setTimeout(function () {
-    //                 window.location.href = `/products/${productId}`
-    //             }, 2000)
-    //
-    //         })
-    //     }
-    // })
 })
 
 
