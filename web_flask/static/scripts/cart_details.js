@@ -7,7 +7,7 @@ let price = 0
 
 if (allPrice) {
     total_price = allPrice.childNodes[0]
-    Number(total_price.textContent)
+    price = Number(total_price.textContent)
 }
 
 removeButtons.forEach(function (button) {
@@ -18,7 +18,7 @@ removeButtons.forEach(function (button) {
         side.remove()
         value -= 1
         price -= product_price
-        total_price.textContent = price
+        total_price.textContent = price.toFixed(1)
         cartValue.setAttribute('value', value)
         fetch(`/cart/remove/${product_id}`)
             .then((response) => {
