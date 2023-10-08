@@ -59,12 +59,17 @@ addReview.addEventListener("click", function () {
                 text: reviewText.value,
                 product_id: productId
             }
-            $.post("/add_review", review, function (data) {
-                swal({title: "Review Added", icon: "success"})
-                setTimeout(function () {
+            const formData = new FormData();
+            for (const key in review) {
+                formData.append(key, review[key]);
+            }
+            fetch("/add_review", {
+                method: "POST",
+                body: formData,
+            }).then((response) => response.json()).then((data) => {
+                swal({title: "Review Added", icon: "success"}).then((result) => {
                     window.location.href = `/products/${productId}`
-                }, 2000)
-
+                })
             })
         }
     })
